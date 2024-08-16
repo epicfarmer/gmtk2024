@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://cttlirq504m1f"]
+
+[ext_resource type="Script" path="res://scripts/Player2D.gd" id="1_k32q1"]
+[ext_resource type="Texture2D" uid="uid://cy5jvdb0jjh88" path="res://images/hero.png" id="2_np2cu"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m0t7d"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_dis6u"]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_k32q1")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_m0t7d")
+debug_color = Color(1, 0.85098, 0, 0.419608)
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(0, 1.27085)
+scale = Vector2(1, 0.942057)
+
+[node name="CSGCylinder3D" type="Sprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_dis6u")
+texture = ExtResource("2_np2cu")
+hframes = 6
+vframes = 5
+
+[node name="CameraControl" type="Node2D" parent="."]

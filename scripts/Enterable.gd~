@@ -1,0 +1,31 @@
+extends Area2D
+
+@onready var outer_scene = get_parent()
+@onready var inner_scene = $Level
+@onready var previous_level = null
+
+func _set_current_level(current, proposed, body) -> void:
+	var root = current.get_parent()
+	root.remove_child(current)
+	proposed.remove_parent(self)
+	root.add_child(proposed)
+	current.remove_child(body)
+	proposed.add_child(body)
+
+func _get_current_level() -> Node:
+	var root := get_tree().root
+	return root.get_child(0)
+
+func enter(body: CharacterBody2D) -> void:
+	_set_current_level(_get_current_level(), inner_scene, body)
+
+func exit(body: CharacterBody2D) -> void:
+	_set_current_level(_get_current_level(), outer_scene, body)
+
+# SIGNALS
+
+func _on_body_entered(body):
+	call_deferred("enter", body)
+
+func _on_body_exited(body):
+	call_deferred("exit", body)
