@@ -7,6 +7,7 @@ extends Area2D
 @onready var previous_level
 var entering: bool = false
 var exiting: bool = false
+var inside: bool = false
 var epsilon: float = 0.1
 var outer_position_on_entry = null
 var inner_position_on_entry = null
@@ -26,6 +27,8 @@ func _change_parent(object, new_parent) -> void:
 	new_parent.add_child(object)
 
 func _set_current_level(current, proposed, proposed_parent, body) -> void:	
+	if current == proposed:
+		return
 	var root = current.get_parent()
 	if proposed.get_parent() != null:
 		proposed.get_parent().remove_child(proposed)
@@ -52,6 +55,7 @@ func enter(body: CharacterBody2D) -> void:
 	inner_position_on_entry = body.position
 	var viewport: SubViewport = tmp_parent.get_node("SubViewport")
 	viewport.add_child(outer_scene)
+	inside = true
 
 func wait(seconds) -> void:
 	await get_tree().create_timer(seconds).timeout
@@ -62,26 +66,18 @@ func exit(body: CharacterBody2D) -> void:
 	var inner_global_end = inner_parent.to_global(local_end)
 	body.position = outer_scene.to_local(inner_global_end)
 	inner_parent.add_child(inner_scene)
+	inside = false
 
 # SIGNALS
 
 func _on_body_entered(body):
-	if entering:
-		print("finished entering")
-		entering = false
-		return
-	if not exiting:
-		entering = true
+	if body.can_enter_or_exit:
+		body.on_enter_or_exit()
 		call_deferred("enter", body)
-		outer_scene.entering = true
 		print("Entering")
 
 func _on_body_exited(body):
-	if exiting:
-		print("finished exiting")
-		exiting = false
-		return
-	if not entering:
-		exiting = true
+	if body.can_enter_or_exit:
+		body.on_enter_or_exit()
 		call_deferred("exit", body)
 		print("Exiting")

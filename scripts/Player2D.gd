@@ -5,6 +5,7 @@ extends CharacterBody2D
 @onready var camera: Camera2D = $Camera
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var coyote_timer = $CoyoteTimer
+@onready var entry_timer = $EntryTimer
 
 const SPEED = 130.0
 const JUMP_VELOCITY = -300.0
@@ -14,6 +15,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var coyote = false
 var jumping = false
 var last_floor = false
+var can_enter_or_exit: bool = true
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -69,6 +71,13 @@ func _unhandled_input(event: InputEvent) -> void:
 			print("Quitting")
 			get_tree().quit()
 
+func on_enter_or_exit():
+	can_enter_or_exit = false
+	entry_timer.start()
 
 func _on_coyote_timer_timeout():
 	coyote = false
+
+func _on_entry_timer_timeout():
+	print("Finished entering or exiting")
+	can_enter_or_exit = true
