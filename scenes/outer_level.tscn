@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bi8pvbjd6hdg8"]
+[gd_scene load_steps=7 format=3 uid="uid://bi8pvbjd6hdg8"]
 
 [ext_resource type="PackedScene" uid="uid://b2l15s6pcy3q7" path="res://scenes/inner_level.tscn" id="1_ajlea"]
+[ext_resource type="Script" path="res://scripts/Enterable.gd" id="1_nhgbx"]
 [ext_resource type="PackedScene" uid="uid://cttlirq504m1f" path="res://scenes/Player2D.tscn" id="3_eg4dl"]
 [ext_resource type="Texture2D" uid="uid://ccvxuypxqojvk" path="res://images/bw-simple.png" id="4_hbi78"]
 
@@ -36,7 +37,8 @@ texture = ExtResource("4_hbi78")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_dtu18")
 
-[node name="OuterLevel" type="Node2D"]
+[node name="OuterLevel" type="Area2D"]
+script = ExtResource("1_nhgbx")
 
 [node name="Level" parent="." instance=ExtResource("1_ajlea")]
 position = Vector2(56, -8)

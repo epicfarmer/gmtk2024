@@ -1,17 +1,25 @@
 extends Area2D
-@onready var outer_parent = get_parent().get_parent().get_parent()
-@onready var outer_scene = get_parent().get_parent()
-@onready var inner_parent = get_parent()
-@onready var inner_scene = self
-@onready var tmp_parent = $Viewport
-@onready var previous_level = null
-@export var entering: bool = false
-@export var exiting: bool = false
+@onready var outer_parent
+@onready var outer_scene
+@onready var inner_parent
+@onready var inner_scene
+@onready var tmp_parent
+@onready var previous_level
+var entering: bool = false
+var exiting: bool = false
 var epsilon: float = 0.1
 var outer_position_on_entry = null
 var inner_position_on_entry = null
 
 # @onready var ray: RayCast2D = get_node("/root/OuterLevel/RayCast2D")
+func _ready():
+	previous_level = null
+	inner_scene = self
+	inner_parent = get_parent()
+	outer_scene = inner_parent.get_parent()
+	if outer_scene != null:
+		outer_parent = outer_scene.get_parent()
+		tmp_parent = $Viewport
 
 func _change_parent(object, new_parent) -> void:
 	object.get_parent().remove_child(object)
@@ -113,6 +121,7 @@ func _on_body_entered(body):
 	if not exiting:
 		entering = true
 		call_deferred("enter", body)
+		outer_scene.entering = true
 		print("Entering")
 
 func _on_body_exited(body):
