@@ -27,7 +27,7 @@ offset_bottom = 608.0
 scale = Vector2(0.561802, 0.186982)
 
 [node name="Level" parent="Boundary" instance=ExtResource("4_j4yyo")]
-position = Vector2(264, -73)
+position = Vector2(248, -72)
 scale = Vector2(0.083, 0.083)
 
 [connection signal="body_entered" from="Boundary" to="Boundary" method="_on_body_entered"]
