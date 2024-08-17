@@ -1,46 +1,70 @@
-[gd_scene load_steps=5 format=3 uid="uid://omhufje3v17g"]
+[gd_scene load_steps=6 format=3 uid="uid://omhufje3v17g"]
 
-[ext_resource type="Texture2D" uid="uid://ccvxuypxqojvk" path="res://images/bw-simple.png" id="1_ox5dp"]
+[ext_resource type="TileSet" uid="uid://cm0nh06kmdhu4" path="res://scenes/tilesetBW.tres" id="1_rew0h"]
 [ext_resource type="PackedScene" uid="uid://cttlirq504m1f" path="res://scenes/Player2D.tscn" id="2_bla71"]
+[ext_resource type="PackedScene" uid="uid://c252hehmkbeyi" path="res://scenes/enter_boundary.tscn" id="3_43ev4"]
+[ext_resource type="Script" path="res://scripts/exit_boundary.gd" id="4_l5vl5"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dtu18"]
-texture = ExtResource("1_ox5dp")
-1:0/0 = 0
-1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-1:0/0/physics_layer_0/angular_velocity = 0.0
-1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-2:0/0 = 0
-2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-2:0/0/physics_layer_0/angular_velocity = 0.0
-3:0/0 = 0
-3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-3:0/0/physics_layer_0/angular_velocity = 0.0
-4:0/0 = 0
-4:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-4:0/0/physics_layer_0/angular_velocity = 0.0
-5:0/0 = 0
-5:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-5:0/0/physics_layer_0/angular_velocity = 0.0
-6:0/0 = 0
-6:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-6:0/0/physics_layer_0/angular_velocity = 0.0
-7:0/0 = 0
-7:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-7:0/0/physics_layer_0/angular_velocity = 0.0
-0:1/0 = 0
-0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:1/0/physics_layer_0/angular_velocity = 0.0
-
-[sub_resource type="TileSet" id="TileSet_b7kjo"]
-physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_dtu18")
+[sub_resource type="Curve" id="Curve_4c5dq"]
+_data = [Vector2(0.0393258, 0.076923), 0.0, 0.0, 0, 0, Vector2(0.926966, 0.89011), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [node name="Kenny-test" type="Node2D"]
 
 [node name="TilemapBW" type="TileMap" parent="."]
-tile_set = SubResource("TileSet_b7kjo")
+tile_set = ExtResource("1_rew0h")
 format = 2
-layer_0/tile_data = PackedInt32Array(0, 65536, 0, 1, 65536, 0, 2, 65536, 0, 3, 65536, 0, 4, 65536, 0, 65540, 65536, 0, 65539, 65536, 0, 65538, 65536, 0, 65537, 65536, 0, 65536, 65536, 0, 131071, 65536, 0, 5, 65536, 0, 65541, 65536, 0, 65542, 65536, 0, 65543, 65536, 0, 65544, 65536, 0, 65545, 65536, 0, -131067, 196608, 0, -131064, 262144, 0, -131063, 327680, 0, -131062, 393216, 0, -65531, 262144, 0, -65530, 327680, 0, -65529, 327680, 0, -65528, 327680, 0, -65527, 327680, 0, -65526, 393216, 0)
+layer_0/tile_data = PackedInt32Array(0, 65536, 0, 1, 65536, 0, 2, 65536, 0, 3, 65536, 0, 4, 65536, 0, 65540, 65536, 0, 65539, 65536, 0, 65538, 65536, 0, 65537, 65536, 0, 65536, 65536, 0, 131071, 65536, 0, 5, 65536, 0, 65541, 65536, 0, 65542, 65536, 0, 65543, 65536, 0, 65544, 65536, 0, 65545, 65536, 0, -131067, 196608, 0, -131064, 262144, 0, -131063, 327680, 0, -131062, 393216, 0, -65531, 262144, 0, -65530, 327680, 0, -65529, 327680, 0, -65528, 327680, 0, -65527, 327680, 0, -65526, 393216, 0, -131069, 196608, 0, -131072, 196608, 0, -65538, 196608, 0)
 
 [node name="Player" parent="." instance=ExtResource("2_bla71")]
 position = Vector2(26, -27)
+
+[node name="enter_boundary" parent="." instance=ExtResource("3_43ev4")]
+visible = false
+rect_x = 100
+
+[node name="exit_boundary" type="Node2D" parent="."]
+script = ExtResource("4_l5vl5")
+
+[node name="down" type="CPUParticles2D" parent="exit_boundary"]
+amount = 50
+lifetime = 0.5
+emission_shape = 3
+emission_rect_extents = Vector2(50, 1)
+spread = 5.0
+gravity = Vector2(0, 100)
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_4c5dq")
+
+[node name="up" type="CPUParticles2D" parent="exit_boundary"]
+visible = false
+amount = 50
+lifetime = 0.5
+emission_shape = 3
+emission_rect_extents = Vector2(50, 1)
+spread = 5.0
+gravity = Vector2(0, -100)
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_4c5dq")
+
+[node name="left" type="CPUParticles2D" parent="exit_boundary"]
+visible = false
+amount = 50
+lifetime = 0.5
+emission_shape = 3
+emission_rect_extents = Vector2(50, 1)
+spread = 5.0
+gravity = Vector2(-100, 0)
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_4c5dq")
+
+[node name="right" type="CPUParticles2D" parent="exit_boundary"]
+visible = false
+amount = 50
+lifetime = 0.5
+emission_shape = 3
+emission_rect_extents = Vector2(50, 1)
+spread = 5.0
+gravity = Vector2(100, 0)
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_4c5dq")
