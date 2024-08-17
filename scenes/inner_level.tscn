@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://b2l15s6pcy3q7"]
+[gd_scene load_steps=6 format=3 uid="uid://b2l15s6pcy3q7"]
 
 [ext_resource type="Script" path="res://scripts/Enterable.gd" id="1_2fe2a"]
 [ext_resource type="TileSet" uid="uid://cm0nh06kmdhu4" path="res://scenes/tilesetBW.tres" id="2_aiu85"]
 [ext_resource type="PackedScene" uid="uid://b1urmpxbwo38v" path="res://ParentView.tscn" id="3_uxtrd"]
 [ext_resource type="PackedScene" uid="uid://cyy7f5sbhjqic" path="res://scenes/inner_inner_level.tscn" id="4_j4yyo"]
+[ext_resource type="PackedScene" uid="uid://ci4quix0m55xa" path="res://scenes/exit_boundary.tscn" id="5_hbhat"]
 
 [node name="Level" type="Node2D"]
 
@@ -29,6 +30,10 @@ scale = Vector2(0.561802, 0.186982)
 [node name="Level" parent="Boundary" instance=ExtResource("4_j4yyo")]
 position = Vector2(264, -73)
 scale = Vector2(0.083, 0.083)
+
+[node name="exit_boundary" parent="Boundary" instance=ExtResource("5_hbhat")]
+origin = Vector2(-288, -96)
+extents = Vector2(288, 96)
 
 [connection signal="body_entered" from="Boundary" to="Boundary" method="_on_body_entered"]
 [connection signal="body_exited" from="Boundary" to="Boundary" method="_on_body_exited"]

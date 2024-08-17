@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cyy7f5sbhjqic"]
+[gd_scene load_steps=5 format=3 uid="uid://cyy7f5sbhjqic"]
 
 [ext_resource type="Script" path="res://scripts/Enterable.gd" id="1_qr12l"]
 [ext_resource type="TileSet" uid="uid://cm0nh06kmdhu4" path="res://scenes/tilesetBW.tres" id="2_w2tlg"]
 [ext_resource type="PackedScene" uid="uid://b1urmpxbwo38v" path="res://ParentView.tscn" id="3_75ge2"]
+[ext_resource type="PackedScene" uid="uid://ci4quix0m55xa" path="res://scenes/exit_boundary.tscn" id="4_y6ckd"]
 
 [node name="Level" type="Node2D"]
 
@@ -24,6 +25,10 @@ offset_top = 96.0
 offset_right = 512.0
 offset_bottom = 608.0
 scale = Vector2(0.561802, 0.186982)
+
+[node name="exit_boundary" parent="Boundary" instance=ExtResource("4_y6ckd")]
+origin = Vector2(-288, -96)
+extents = Vector2(288, 96)
 
 [connection signal="body_entered" from="Boundary" to="Boundary" method="_on_body_entered"]
 [connection signal="body_exited" from="Boundary" to="Boundary" method="_on_body_exited"]
