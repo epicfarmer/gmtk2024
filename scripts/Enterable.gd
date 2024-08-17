@@ -5,7 +5,8 @@ extends Area2D
 @onready var inner_scene = self
 @onready var tmp_parent = $Viewport
 @onready var previous_level = null
-@export var entered: bool = false
+@export var entering: bool = false
+@export var exiting: bool = false
 var epsilon: float = 0.1
 var outer_position_on_entry = null
 var inner_position_on_entry = null
@@ -64,7 +65,6 @@ func _aabb_raycast(ray: RayCast2D, global_origin_position: Vector2, target: Node
 		return y_collision
 	return _aabb_raycast(ray, (1 - epsilon) * global_origin_position + epsilon * target.global_position, target)
 
-
 func _set_current_level(current, proposed, proposed_parent, body) -> void:	
 	var root = current.get_parent()
 	if proposed.get_parent() != null:
@@ -92,29 +92,35 @@ func enter(body: CharacterBody2D) -> void:
 	inner_position_on_entry = body.position
 	var viewport: SubViewport = tmp_parent.get_node("SubViewport")
 	viewport.add_child(outer_scene)
-	viewport.render_target_update_mode = 4
-	entered = true
 
 func wait(seconds) -> void:
-	await get_tree().create_timer(10).timeout
-
+	await get_tree().create_timer(seconds).timeout
+	
 func exit(body: CharacterBody2D) -> void:
 	var local_end = body.position
 	_set_current_level(_get_current_level(), outer_scene, outer_parent, body)
 	var inner_global_end = inner_parent.to_global(local_end)
 	body.position = outer_scene.to_local(inner_global_end)
 	inner_parent.add_child(inner_scene)
-	wait(10)
-	entered = false
 
 # SIGNALS
 
 func _on_body_entered(body):
-	if not entered:
+	if entering:
+		print("finished entering")
+		entering = false
+		return
+	if not exiting:
+		entering = true
 		call_deferred("enter", body)
 		print("Entering")
 
 func _on_body_exited(body):
-	if entered:
+	if exiting:
+		print("finished exiting")
+		exiting = false
+		return
+	if not entering:
+		exiting = true
 		call_deferred("exit", body)
 		print("Exiting")
