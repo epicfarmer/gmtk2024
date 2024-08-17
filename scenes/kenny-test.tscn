@@ -1,13 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://omhufje3v17g"]
+[gd_scene load_steps=5 format=3 uid="uid://omhufje3v17g"]
 
 [ext_resource type="TileSet" uid="uid://cm0nh06kmdhu4" path="res://scenes/tilesetBW.tres" id="1_rew0h"]
 [ext_resource type="PackedScene" uid="uid://cttlirq504m1f" path="res://scenes/Player2D.tscn" id="2_bla71"]
 [ext_resource type="PackedScene" uid="uid://c252hehmkbeyi" path="res://scenes/enter_boundary.tscn" id="3_43ev4"]
-[ext_resource type="Script" path="res://scripts/exit_boundary.gd" id="4_l5vl5"]
-
-[sub_resource type="Curve" id="Curve_4c5dq"]
-_data = [Vector2(0.0393258, 0.076923), 0.0, 0.0, 0, 0, Vector2(0.926966, 0.89011), 0.0, 0.0, 0, 0]
-point_count = 2
+[ext_resource type="PackedScene" uid="uid://ci4quix0m55xa" path="res://scenes/exit_boundary.tscn" id="4_uevnl"]
 
 [node name="Kenny-test" type="Node2D"]
 
@@ -23,48 +19,4 @@ position = Vector2(26, -27)
 visible = false
 rect_x = 100
 
-[node name="exit_boundary" type="Node2D" parent="."]
-script = ExtResource("4_l5vl5")
-
-[node name="down" type="CPUParticles2D" parent="exit_boundary"]
-amount = 50
-lifetime = 0.5
-emission_shape = 3
-emission_rect_extents = Vector2(50, 1)
-spread = 5.0
-gravity = Vector2(0, 100)
-scale_amount_max = 4.0
-scale_amount_curve = SubResource("Curve_4c5dq")
-
-[node name="up" type="CPUParticles2D" parent="exit_boundary"]
-visible = false
-amount = 50
-lifetime = 0.5
-emission_shape = 3
-emission_rect_extents = Vector2(50, 1)
-spread = 5.0
-gravity = Vector2(0, -100)
-scale_amount_max = 4.0
-scale_amount_curve = SubResource("Curve_4c5dq")
-
-[node name="left" type="CPUParticles2D" parent="exit_boundary"]
-visible = false
-amount = 50
-lifetime = 0.5
-emission_shape = 3
-emission_rect_extents = Vector2(50, 1)
-spread = 5.0
-gravity = Vector2(-100, 0)
-scale_amount_max = 4.0
-scale_amount_curve = SubResource("Curve_4c5dq")
-
-[node name="right" type="CPUParticles2D" parent="exit_boundary"]
-visible = false
-amount = 50
-lifetime = 0.5
-emission_shape = 3
-emission_rect_extents = Vector2(50, 1)
-spread = 5.0
-gravity = Vector2(100, 0)
-scale_amount_max = 4.0
-scale_amount_curve = SubResource("Curve_4c5dq")
+[node name="exit_boundary" parent="." instance=ExtResource("4_uevnl")]
