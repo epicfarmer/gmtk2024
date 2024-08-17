@@ -27,6 +27,7 @@ offset_bottom = 608.0
 scale = Vector2(0.561802, 0.186982)
 
 [node name="exit_boundary" parent="Boundary" instance=ExtResource("4_y6ckd")]
+visible = false
 origin = Vector2(-288, -96)
 extents = Vector2(288, 96)
 

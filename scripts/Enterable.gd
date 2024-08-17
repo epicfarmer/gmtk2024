@@ -5,6 +5,8 @@ extends Area2D
 @onready var inner_scene
 @onready var tmp_parent
 @onready var previous_level
+
+
 var entering: bool = false
 var exiting: bool = false
 var inside: bool = false
@@ -14,6 +16,7 @@ var inner_position_on_entry = null
 
 # @onready var ray: RayCast2D = get_node("/root/OuterLevel/RayCast2D")
 func _ready():
+
 	previous_level = null
 	inner_scene = self
 	inner_parent = get_parent()
@@ -51,23 +54,37 @@ func _set_body_position_enter(body) -> void:
 func enter(body: CharacterBody2D) -> void:
 	outer_position_on_entry = body.position
 	_set_body_position_enter(body)
+	_get_current_level().disable_boundary()
 	_set_current_level(_get_current_level(), inner_scene, inner_parent, body)
 	inner_position_on_entry = body.position
 	var viewport: SubViewport = tmp_parent.get_node("SubViewport")
 	viewport.add_child(outer_scene)
 	inside = true
+	enable_boundary()
 
 func wait(seconds) -> void:
 	await get_tree().create_timer(seconds).timeout
 	
 func exit(body: CharacterBody2D) -> void:
 	var local_end = body.position
+	disable_boundary()
 	_set_current_level(_get_current_level(), outer_scene, outer_parent, body)
 	var inner_global_end = inner_parent.to_global(local_end)
 	body.position = outer_scene.to_local(inner_global_end)
 	inner_parent.add_child(inner_scene)
 	inside = false
+	_get_current_level().enable_boundary()
 
+func disable_boundary():
+	var exit_bound = get_node("./exit_boundary")
+	if exit_bound != null:
+		exit_bound.visible = false
+
+func enable_boundary():
+	var exit_bound = get_node("./exit_boundary")
+	if exit_bound != null:
+		exit_bound.visible = true
+	
 # SIGNALS
 
 func _on_body_entered(body):
@@ -81,3 +98,4 @@ func _on_body_exited(body):
 		body.on_enter_or_exit()
 		call_deferred("exit", body)
 		print("Exiting")
+		
