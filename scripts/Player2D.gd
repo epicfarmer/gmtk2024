@@ -57,26 +57,3 @@ func _unhandled_input(event: InputEvent) -> void:
 		if key_event.pressed and key_event.keycode == KEY_ESCAPE:
 			print("Quitting")
 			get_tree().quit()
-
-
-func _on_level_area_entered(area):
-	print("Enter")
-	area.enter(self)
-	pass # Replace with function body.
-
-
-func _on_level_area_exited(area):
-	print("Exit")
-	area.exit(self)
-	pass # Replace with function body.
-	
-func _on_level_body_entered(area):
-	print("Enter Body")
-	area.enter(self)
-	pass # Replace with function body.
-
-
-func _on_level_body_exited(area):
-	print("Exit Body")
-	area.exit(self)
-	pass # Replace with function body.
