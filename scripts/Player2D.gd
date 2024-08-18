@@ -15,6 +15,9 @@ var coyote = false
 var jumping = false
 var last_floor = false
 
+func _ready():
+	get_parent().inside = true
+
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
