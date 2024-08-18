@@ -9,6 +9,7 @@ extends CharacterBody2D
 
 const SPEED = 130.0
 const JUMP_VELOCITY = -300.0
+const SPRING_VELOCITY = -600.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -16,6 +17,7 @@ var coyote = false
 var jumping = false
 var last_floor = false
 var can_enter_or_exit: bool = true
+var spring = null
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -25,9 +27,16 @@ func _physics_process(delta):
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and (is_on_floor() or coyote):
 		jumping = true
-		velocity.y = JUMP_VELOCITY
-	if Input.is_action_just_released("jump") and velocity.y < -100:
-		velocity.y = -100
+		if spring != null:
+			velocity.y = SPRING_VELOCITY
+			spring.play_spring()
+		else:
+			velocity.y = JUMP_VELOCITY
+	if Input.is_action_just_released("jump"):
+		if velocity.y < JUMP_VELOCITY: # early out for springboard
+			velocity.y = JUMP_VELOCITY
+		elif velocity.y < -100:
+			velocity.y = -100
 	
 	# Get the input direction: -1, 0, 1
 	var direction = Input.get_axis("move_left", "move_right")

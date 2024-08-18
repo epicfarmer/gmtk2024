@@ -1,6 +1,7 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://cm0nh06kmdhu4"]
+[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://cm0nh06kmdhu4"]
 
 [ext_resource type="Texture2D" uid="uid://ccvxuypxqojvk" path="res://images/bw-simple.png" id="1_u0awo"]
+[ext_resource type="PackedScene" uid="uid://dy7bum431dn3o" path="res://scenes/spring.tscn" id="2_rygma"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dtu18"]
 texture = ExtResource("1_u0awo")
@@ -38,6 +39,12 @@ texture = ExtResource("1_u0awo")
 0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:1/0/physics_layer_0/angular_velocity = 0.0
 
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_1jsw6"]
+resource_name = "basic objects"
+scenes/2/scene = ExtResource("2_rygma")
+scenes/2/display_placeholder = ExtResource("2_rygma")
+
 [resource]
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_dtu18")
+sources/1 = SubResource("TileSetScenesCollectionSource_1jsw6")
