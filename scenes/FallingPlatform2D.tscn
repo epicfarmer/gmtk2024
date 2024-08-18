@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/EnteringBody.gd" id="1_lpd8p"]
 [ext_resource type="TileSet" uid="uid://cm0nh06kmdhu4" path="res://scenes/tilesetBW.tres" id="2_dhss3"]
-[ext_resource type="Script" path="res://scripts/FallOnCollision.gd" id="3_x4hmv"]
+[ext_resource type="Script" path="res://scripts/FallOnCollision.gd" id="3_bvplf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p7v18"]
 size = Vector2(48, 3.5)
@@ -34,7 +34,7 @@ layer_0/tile_data = PackedInt32Array(65535, 262144, 0, 0, 327680, 0, 1, 393216, 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 4
-script = ExtResource("3_x4hmv")
+script = ExtResource("3_bvplf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, -3)

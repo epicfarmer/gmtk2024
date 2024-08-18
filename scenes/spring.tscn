@@ -1,0 +1,98 @@
+[gd_scene load_steps=12 format=3 uid="uid://dy7bum431dn3o"]
+
+[ext_resource type="Script" path="res://scripts/spring.gd" id="1_kndmt"]
+[ext_resource type="Texture2D" uid="uid://de6l6xyd7dkbq" path="res://images/spring.png" id="2_g3uv1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hv726"]
+size = Vector2(14, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kfu5k"]
+atlas = ExtResource("2_g3uv1")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wxltv"]
+atlas = ExtResource("2_g3uv1")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h3smk"]
+atlas = ExtResource("2_g3uv1")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ypotx"]
+atlas = ExtResource("2_g3uv1")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5qcu7"]
+atlas = ExtResource("2_g3uv1")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4gv6b"]
+atlas = ExtResource("2_g3uv1")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_253q8"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kfu5k")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_wxltv")
+}],
+"loop": false,
+"name": &"recoil",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h3smk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ypotx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5qcu7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4gv6b")
+}],
+"loop": false,
+"name": &"spring",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1odvk"]
+size = Vector2(14, 1)
+
+[node name="spring" type="Node2D"]
+script = ExtResource("1_kndmt")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 3.5)
+shape = SubResource("RectangleShape2D_hv726")
+
+[node name="sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_253q8")
+animation = &"recoil"
+
+[node name="playerdetect" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="playerdetect"]
+position = Vector2(0, -1.5)
+shape = SubResource("RectangleShape2D_1odvk")
+
+[connection signal="animation_finished" from="sprite" to="." method="_on_sprite_animation_finished"]
+[connection signal="body_entered" from="playerdetect" to="." method="_on_playerdetect_body_entered"]
+[connection signal="body_exited" from="playerdetect" to="." method="_on_playerdetect_body_exited"]
