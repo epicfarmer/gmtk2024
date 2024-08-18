@@ -1,8 +1,10 @@
-[gd_scene load_steps=28 format=3 uid="uid://cttlirq504m1f"]
+[gd_scene load_steps=30 format=3 uid="uid://cttlirq504m1f"]
 
 [ext_resource type="Script" path="res://scripts/Player2D.gd" id="1_k32q1"]
+[ext_resource type="PackedScene" uid="uid://b1urmpxbwo38v" path="res://scenes/ParentView.tscn" id="2_naxnl"]
 [ext_resource type="Texture2D" uid="uid://cy5jvdb0jjh88" path="res://images/hero.png" id="2_np2cu"]
 [ext_resource type="Texture2D" uid="uid://fvijam3vhvui" path="res://images/skeleton1bit.png" id="2_nv8l7"]
+[ext_resource type="Script" path="res://scripts/EnteringBody.gd" id="5_ibwu6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fhvav"]
 size = Vector2(7, 13)
@@ -191,6 +193,13 @@ debug_color = Color(1, 0.85098, 0, 0.419608)
 position = Vector2(0, 1.27085)
 scale = Vector2(1, 0.942057)
 
+[node name="ParentView" parent="Camera" instance=ExtResource("2_naxnl")]
+offset_left = 319.0
+offset_top = 133.0
+offset_right = 510.0
+offset_bottom = 269.0
+stretch = true
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_p5m4b")
 animation = &"walk"
@@ -211,6 +220,9 @@ one_shot = true
 [node name="EntryTimer" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
+
+[node name="EnteringBody" type="Node2D" parent="."]
+script = ExtResource("5_ibwu6")
 
 [connection signal="timeout" from="CoyoteTimer" to="." method="_on_coyote_timer_timeout"]
 [connection signal="timeout" from="EntryTimer" to="." method="_on_entry_timer_timeout"]
