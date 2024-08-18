@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cyy7f5sbhjqic"]
+[gd_scene load_steps=5 format=3 uid="uid://cyy7f5sbhjqic"]
 
 [ext_resource type="Script" path="res://scripts/Enterable.gd" id="1_qr12l"]
+[ext_resource type="PackedScene" uid="uid://dy7bum431dn3o" path="res://scenes/spring.tscn" id="2_6e8q7"]
 [ext_resource type="TileSet" uid="uid://cm0nh06kmdhu4" path="res://scenes/tilesetBW.tres" id="2_w2tlg"]
 [ext_resource type="PackedScene" uid="uid://ci4quix0m55xa" path="res://scenes/exit_boundary.tscn" id="4_y6ckd"]
 
@@ -10,6 +11,9 @@
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_qr12l")
+
+[node name="spring" parent="Boundary" instance=ExtResource("2_6e8q7")]
+position = Vector2(264, -72)
 
 [node name="Collision" type="CollisionPolygon2D" parent="Boundary"]
 polygon = PackedVector2Array(-288, -96, -288, 96, 288, 96, 288, -96)
