@@ -8,6 +8,7 @@ var can_enter_or_exit: bool = true
 var has_camera: bool = false
 var body: CollisionObject2D
 var parent_scene
+var frozen: bool = false
 
 func _ready() -> void:
 	body = get_parent()
@@ -18,14 +19,19 @@ func _ready() -> void:
 	entry_timer.one_shot = true
 	has_camera = body.has_node("Camera")
 	parent_scene = body.get_parent()
+	frozen = false
 
 func freeze_body():
-	body.freeze = true
-	entry_timer.paused = true
+	if not frozen:
+		body.freeze = true
+		entry_timer.paused = true
+	frozen = true
 
 func unfreeze_body():
-	body.freeze = false
-	entry_timer.paused = false
+	if frozen:
+		body.freeze = false
+		entry_timer.paused = false
+	frozen = false
 
 func _process(_delta):
 	if not has_camera and parent_scene.inside:

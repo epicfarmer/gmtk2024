@@ -17,8 +17,8 @@ scale = Vector2(0.083, 0.083)
 
 [node name="Player" parent="." instance=ExtResource("3_eg4dl")]
 position = Vector2(0, -130)
-collision_layer = 3
-collision_mask = 3
+collision_layer = 7
+collision_mask = 7
 
 [node name="Tilemap" type="TileMap" parent="."]
 tile_set = ExtResource("4_33n2t")
