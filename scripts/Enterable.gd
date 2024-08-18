@@ -1,4 +1,7 @@
 extends Area2D
+
+class_name Enterable
+
 var outer_parent
 var outer_scene
 var inner_parent
@@ -11,6 +14,7 @@ var inside: bool = false
 var epsilon: float = 0.1
 
 var to_unfreeze_on_entry: Array[EnteringBody]
+var to_set_viewport_on_exit: Array[Enterable]
 
 # @onready var ray: RayCast2D = get_node("/root/OuterLevel/RayCast2D")
 func _ready():
@@ -70,6 +74,11 @@ func enter(body: CollisionObject2D) -> void:
 	_change_parent(body, inner_scene)
 	if _get_entering_body(body).has_camera:
 		var viewport: SubViewport = tmp_parent.get_node("SubViewport")
+		var existing_children = viewport.get_children()
+		for child in existing_children:
+			if child is Enterable:
+				to_set_viewport_on_exit.push_back(child)
+				viewport.remove_child(child)
 		viewport.add_child(outer_scene)
 		inside = true
 		enable_boundary()
@@ -106,15 +115,15 @@ func enable_boundary():
 
 func _on_body_entered(body):
 	var entering_body: EnteringBody = _get_entering_body(body)
-	if entering_body.can_enter_or_exit and not reparenting:
-		entering_body.on_enter_or_exit(inner_scene)
+	if entering_body.can_enter and not reparenting:
+		entering_body.on_enter(inner_scene)
 		call_deferred("enter", body)
 		print(body, "is entering", self)
 
 func _on_body_exited(body):
 	var entering_body: EnteringBody = _get_entering_body(body)
-	if entering_body.can_enter_or_exit and not reparenting:
-		entering_body.on_enter_or_exit(outer_scene)
+	if entering_body.can_exit and not reparenting and entering_body.parent_scene == self:
+		entering_body.on_exit(outer_scene)
 		call_deferred("exit", body)
 		print(body, "is exiting ", self)
 		

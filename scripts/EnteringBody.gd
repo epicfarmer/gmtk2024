@@ -4,7 +4,8 @@ extends Node2D
 
 var entry_timer: Timer
 
-var can_enter_or_exit: bool = true
+var can_enter: bool = true
+var can_exit: bool = true
 var has_camera: bool = false
 var body: CollisionObject2D
 var parent_scene
@@ -41,8 +42,17 @@ func _process(_delta):
 	else:
 		pass
 
-func on_enter_or_exit(scene):
-	can_enter_or_exit = false
+func on_enter(scene):
+	can_exit = false
+	if is_inside_tree():
+		entry_timer.start()
+	else:
+		entry_timer.autostart = true
+	parent_scene = scene
+	
+
+func on_exit(scene):
+	can_enter = false
 	if is_inside_tree():
 		entry_timer.start()
 	else:
@@ -53,7 +63,8 @@ func on_enter_or_exit(scene):
 
 func _on_entry_timer_timeout():
 	print("Finished entering or exiting")
-	can_enter_or_exit = true
+	can_enter = true
+	can_exit = true
 
 func get_parent_view():
 	if not has_camera:
