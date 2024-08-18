@@ -11,13 +11,21 @@ config_version=5
 [application]
 
 config/name="Git"
-run/main_scene="res://scenes/kenny-test.tscn"
+run/main_scene="res://scenes/outer_level.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+RigidBodyAutoScaler="*res://addons/rigidbody_auto_scaler/RigidBodyAutoScaler.gd"
 
 [display]
 
 window/stretch/scale=2.0
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/rigidbody_auto_scaler/plugin.cfg")
 
 [input]
 
