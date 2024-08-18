@@ -10,4 +10,5 @@ func _on_body_entered(body):
 	
 
 func _on_timer_timeout():
-	print("TODO: reload level...")
+	print("restart level")
+	LevelManager.restart()

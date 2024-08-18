@@ -44,7 +44,7 @@ func _set_current_level(current, proposed) -> void:
 
 func _get_current_level() -> Node:
 	var root := get_tree().root
-	return root.get_child(1)
+	return root.get_child(root.get_child_count() - 1)
 
 func _get_entering_body(body) -> EnteringBody:
 	return body.get_node("EnteringBody")
@@ -102,14 +102,22 @@ func exit(body: CollisionObject2D) -> void:
 	body.position = outer_scene.to_local(inner_global_end)
 
 func disable_boundary():
-	var exit_bound = get_node("./exit_boundary")
-	if exit_bound != null:
-		exit_bound.visible = false
+	for child in self.get_children():
+		if child.name.begins_with("exit_boundary"):
+			child.visible = false
+		if child.name.begins_with("enter_boundary"):
+			child.visible = false
+		if child.name.begins_with("killzone"):
+			child.monitoring = false
 
 func enable_boundary():
-	var exit_bound = get_node("./exit_boundary")
-	if exit_bound != null:
-		exit_bound.visible = true
+	for child in self.get_children():
+		if child.name.begins_with("exit_boundary"):
+			child.visible = true
+		if child.name.begins_with("enter_boundary"):
+			child.visible = true
+		if child.name.begins_with("killzone"):
+			child.monitoring = true
 	
 # SIGNALS
 

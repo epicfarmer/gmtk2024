@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dum88g428kh24"]
+
+[ext_resource type="Script" path="res://scripts/audio_manager.gd" id="1_40miq"]
+[ext_resource type="AudioStream" uid="uid://c3y1p2817od6b" path="res://audio/background.mp3" id="1_l4a2u"]
+
+[node name="AudioManager" type="Node"]
+script = ExtResource("1_40miq")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_l4a2u")
+volume_db = -5.622
+autoplay = true

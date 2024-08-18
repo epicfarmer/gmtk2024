@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bi8pvbjd6hdg8"]
+[gd_scene load_steps=11 format=3 uid="uid://bi8pvbjd6hdg8"]
 
 [ext_resource type="PackedScene" uid="uid://b2l15s6pcy3q7" path="res://scenes/inner_level.tscn" id="1_ajlea"]
 [ext_resource type="Script" path="res://scripts/Enterable.gd" id="1_nhgbx"]
@@ -11,6 +11,9 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_63eq4"]
 size = Vector2(64, 3)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_elp4h"]
+distance = -189.0
 
 [node name="OuterLevel" type="Area2D"]
 script = ExtResource("1_nhgbx")
@@ -57,3 +60,8 @@ offset_right = 286.0
 offset_bottom = -100.0
 text = "Goal
 "
+
+[node name="killzone2" parent="." instance=ExtResource("8_40byj")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="killzone2"]
+shape = SubResource("WorldBoundaryShape2D_elp4h")

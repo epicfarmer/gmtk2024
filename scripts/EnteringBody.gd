@@ -49,6 +49,11 @@ func on_enter(scene):
 	else:
 		entry_timer.autostart = true
 	parent_scene = scene
+	print("here")
+	var audio = get_node("../ShrinkSound")
+	print(audio)
+	if audio != null:
+		audio.play() 
 	
 
 func on_exit(scene):
@@ -58,6 +63,9 @@ func on_exit(scene):
 	else:
 		entry_timer.autostart = true
 	parent_scene = scene
+	var audio = get_node("../GrowSound")
+	if audio != null:
+		audio.play() 
 
 # SIGNALS
 
@@ -65,6 +73,7 @@ func _on_entry_timer_timeout():
 	print("Finished entering or exiting")
 	can_enter = true
 	can_exit = true
+	
 
 func get_parent_view():
 	if not has_camera:

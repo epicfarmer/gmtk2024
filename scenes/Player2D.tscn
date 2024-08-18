@@ -1,13 +1,33 @@
-[gd_scene load_steps=33 format=3 uid="uid://cttlirq504m1f"]
+[gd_scene load_steps=38 format=3 uid="uid://cttlirq504m1f"]
 
 [ext_resource type="Script" path="res://scripts/Player2D.gd" id="1_k32q1"]
 [ext_resource type="PackedScene" uid="uid://b1urmpxbwo38v" path="res://scenes/ParentView.tscn" id="2_naxnl"]
 [ext_resource type="Texture2D" uid="uid://cy5jvdb0jjh88" path="res://images/hero.png" id="2_np2cu"]
 [ext_resource type="Texture2D" uid="uid://fvijam3vhvui" path="res://images/skeleton1bit.png" id="2_nv8l7"]
 [ext_resource type="Script" path="res://scripts/EnteringBody.gd" id="5_ibwu6"]
+[ext_resource type="AudioStream" uid="uid://bdqfu114ovqyl" path="res://audio/spring_jump.wav" id="6_0rm55"]
+[ext_resource type="AudioStream" uid="uid://qy0pgm7auynj" path="res://audio/grow.wav" id="7_tmyej"]
+[ext_resource type="AudioStream" uid="uid://bv6lhisipy3pj" path="res://audio/shrink.wav" id="8_1oild"]
+[ext_resource type="AudioStream" uid="uid://dfxfo7jhb6xer" path="res://audio/death.wav" id="9_ku3le"]
+[ext_resource type="AudioStream" uid="uid://dieuiroc34pi5" path="res://audio/jump.wav" id="9_u2mvx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fhvav"]
 size = Vector2(7, 13)
+
+[sub_resource type="Animation" id="Animation_7bl7h"]
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_tral4"]
 resource_name = "die"
@@ -23,21 +43,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.984314)]
-}
-
-[sub_resource type="Animation" id="Animation_7bl7h"]
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_f0rsd"]
@@ -276,6 +281,21 @@ one_shot = true
 
 [node name="EnteringBody" type="Node2D" parent="."]
 script = ExtResource("5_ibwu6")
+
+[node name="SpringJumpSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_0rm55")
+
+[node name="GrowSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_tmyej")
+
+[node name="ShrinkSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_1oild")
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_ku3le")
+
+[node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_u2mvx")
 
 [connection signal="timeout" from="CoyoteTimer" to="." method="_on_coyote_timer_timeout"]
 [connection signal="timeout" from="EntryTimer" to="." method="_on_entry_timer_timeout"]

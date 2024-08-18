@@ -1,10 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://b2l15s6pcy3q7"]
+[gd_scene load_steps=9 format=3 uid="uid://b2l15s6pcy3q7"]
 
 [ext_resource type="Script" path="res://scripts/Enterable.gd" id="1_2fe2a"]
 [ext_resource type="TileSet" uid="uid://cm0nh06kmdhu4" path="res://scenes/tilesetBW.tres" id="2_aiu85"]
 [ext_resource type="PackedScene" uid="uid://cyy7f5sbhjqic" path="res://scenes/inner_inner_level.tscn" id="4_j4yyo"]
 [ext_resource type="PackedScene" uid="uid://ci4quix0m55xa" path="res://scenes/exit_boundary.tscn" id="5_hbhat"]
+[ext_resource type="PackedScene" uid="uid://s7yctcugkckq" path="res://scenes/killzone.tscn" id="6_55xot"]
 [ext_resource type="PackedScene" uid="uid://c252hehmkbeyi" path="res://scenes/enter_boundary.tscn" id="6_ri15m"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_q5dc6"]
+distance = -210.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g7yo2"]
+size = Vector2(64, 4)
 
 [node name="Level" type="Node2D"]
 
@@ -25,8 +32,10 @@ layer_0/tile_data = PackedInt32Array(262127, 65536, 0, 327663, 65536, 0, 393199,
 position = Vector2(264, -56)
 scale = Vector2(0.083, 0.083)
 
-[node name="enter_boundary" parent="Boundary/Level" instance=ExtResource("6_ri15m")]
-scale = Vector2(12.0482, 12.0482)
+[node name="enter_boundary" parent="Boundary" instance=ExtResource("6_ri15m")]
+visible = false
+position = Vector2(264, -56)
+scale = Vector2(1, 1)
 rect_x = 24
 rect_y = 10
 
@@ -34,6 +43,19 @@ rect_y = 10
 visible = false
 origin = Vector2(-288, -96)
 extents = Vector2(288, 96)
+
+[node name="killzone2" parent="Boundary" instance=ExtResource("6_55xot")]
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundary/killzone2"]
+shape = SubResource("WorldBoundaryShape2D_q5dc6")
+
+[node name="killzone" parent="Boundary" instance=ExtResource("6_55xot")]
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundary/killzone"]
+position = Vector2(-160, 62)
+shape = SubResource("RectangleShape2D_g7yo2")
 
 [connection signal="body_entered" from="Boundary" to="Boundary" method="_on_body_entered"]
 [connection signal="body_exited" from="Boundary" to="Boundary" method="_on_body_exited"]

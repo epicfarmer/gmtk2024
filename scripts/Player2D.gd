@@ -6,6 +6,9 @@ extends CharacterBody2D
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var coyote_timer = $CoyoteTimer
 @onready var player = $AnimationPlayer
+@onready var jump_audio = $JumpSound
+@onready var spring_jump_audio = $SpringJumpSound
+@onready var death_audio = $DeathSound
 
 const SPEED = 130.0
 const JUMP_VELOCITY = -300.0
@@ -16,6 +19,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var coyote = false
 var jumping = false
 var last_floor = false
+var dying = false
 
 func _ready():
 	get_parent().inside = true
@@ -24,6 +28,8 @@ var spring = null
 
 func _physics_process(delta):
 	# Add the gravity.
+	if dying:
+		return
 	if not is_on_floor():
 		velocity.y += gravity * delta
 	
@@ -38,7 +44,9 @@ func _physics_process(delta):
 		if spring != null:
 			velocity.y = SPRING_VELOCITY
 			spring.play_spring()
+			spring_jump_audio.play()
 		else:
+			jump_audio.play()
 			velocity.y = JUMP_VELOCITY
 	if Input.is_action_just_released("jump"):
 		if velocity.y < JUMP_VELOCITY: # early out for springboard
@@ -92,4 +100,7 @@ func _on_coyote_timer_timeout():
 	coyote = false
 
 func die():
+	dying = true
+	AudioManager.stop()
+	death_audio.play()
 	player.play("die")

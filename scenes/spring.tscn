@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://dy7bum431dn3o"]
+[gd_scene load_steps=13 format=3 uid="uid://dy7bum431dn3o"]
 
 [ext_resource type="Script" path="res://scripts/spring.gd" id="1_kndmt"]
 [ext_resource type="Texture2D" uid="uid://de6l6xyd7dkbq" path="res://images/spring.png" id="2_g3uv1"]
+[ext_resource type="AudioStream" uid="uid://dcuemfd6ru0av" path="res://audio/recoil.wav" id="3_j4mjs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hv726"]
 size = Vector2(14, 9)
@@ -92,6 +93,9 @@ animation = &"recoil"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="playerdetect"]
 position = Vector2(0, -1.5)
 shape = SubResource("RectangleShape2D_1odvk")
+
+[node name="RecoilSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_j4mjs")
 
 [connection signal="animation_finished" from="sprite" to="." method="_on_sprite_animation_finished"]
 [connection signal="body_entered" from="playerdetect" to="." method="_on_playerdetect_body_entered"]
