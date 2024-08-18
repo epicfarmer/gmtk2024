@@ -5,6 +5,7 @@ extends CharacterBody2D
 @onready var camera: Camera2D = $Camera
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var coyote_timer = $CoyoteTimer
+@onready var player = $AnimationPlayer
 
 const SPEED = 130.0
 const JUMP_VELOCITY = -300.0
@@ -89,3 +90,6 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _on_coyote_timer_timeout():
 	coyote = false
+
+func die():
+	player.play("die")

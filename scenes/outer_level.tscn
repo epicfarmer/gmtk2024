@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bi8pvbjd6hdg8"]
+[gd_scene load_steps=10 format=3 uid="uid://bi8pvbjd6hdg8"]
 
 [ext_resource type="PackedScene" uid="uid://b2l15s6pcy3q7" path="res://scenes/inner_level.tscn" id="1_ajlea"]
 [ext_resource type="Script" path="res://scripts/Enterable.gd" id="1_nhgbx"]
@@ -7,6 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://c252hehmkbeyi" path="res://scenes/enter_boundary.tscn" id="5_keo6y"]
 [ext_resource type="PackedScene" uid="uid://ci4quix0m55xa" path="res://scenes/exit_boundary.tscn" id="6_o6qkd"]
 [ext_resource type="PackedScene" uid="uid://bjb2xix6qbngg" path="res://scenes/FallingPlatform2D.tscn" id="7_q0omy"]
+[ext_resource type="PackedScene" uid="uid://s7yctcugkckq" path="res://scenes/killzone.tscn" id="8_40byj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_63eq4"]
+size = Vector2(64, 3)
 
 [node name="OuterLevel" type="Area2D"]
 script = ExtResource("1_nhgbx")
@@ -27,8 +31,8 @@ layer_0/tile_data = PackedInt32Array(262127, 65536, 0, 327663, 65536, 0, 393199,
 
 [node name="enter_boundary" parent="." instance=ExtResource("5_keo6y")]
 position = Vector2(56, -8)
-rect_x = 32
-rect_y = 8
+rect_x = 24
+rect_y = 10
 
 [node name="exit_boundary" parent="." instance=ExtResource("6_o6qkd")]
 visible = false
@@ -39,6 +43,12 @@ extents = Vector2(288, 96)
 position = Vector2(56, -35)
 lock_rotation = true
 freeze = false
+
+[node name="killzone" parent="." instance=ExtResource("8_40byj")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="killzone"]
+position = Vector2(-160, 62.5)
+shape = SubResource("RectangleShape2D_63eq4")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 offset_left = 246.0

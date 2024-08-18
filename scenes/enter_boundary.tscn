@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://c252hehmkbeyi"]
+[gd_scene load_steps=5 format=3 uid="uid://c252hehmkbeyi"]
 
 [ext_resource type="Script" path="res://scripts/enter_boundary.gd" id="1_kitlw"]
 
@@ -12,10 +12,15 @@ point_count = 2
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.719101, 0.384615), -0.717216, -0.717216, 0, 0, Vector2(0.842697, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
+[sub_resource type="Curve" id="Curve_grs3g"]
+_data = [Vector2(0.0561798, 0.945055), 0.0, 0.0, 0, 0, Vector2(0.640449, 0.527472), 0.0, 0.0, 0, 0, Vector2(0.94382, 0.0879121), 0.0, 0.0, 0, 0]
+point_count = 3
+
 [node name="enter_boundary" type="Node2D"]
 script = ExtResource("1_kitlw")
 
 [node name="inwardparticles" type="CPUParticles2D" parent="."]
+visible = false
 amount = 60
 lifetime = 0.8
 speed_scale = 1.75
@@ -38,3 +43,47 @@ emission_shape = 3
 emission_rect_extents = Vector2(50, 50)
 spread = 0.0
 gravity = Vector2(0, 0)
+
+[node name="down" type="CPUParticles2D" parent="."]
+amount = 50
+lifetime = 0.5
+emission_shape = 3
+emission_rect_extents = Vector2(50, 1)
+spread = 5.0
+gravity = Vector2(0, -50)
+scale_amount_min = 2.0
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_grs3g")
+
+[node name="up" type="CPUParticles2D" parent="."]
+amount = 50
+lifetime = 0.5
+emission_shape = 3
+emission_rect_extents = Vector2(50, 1)
+spread = 5.0
+gravity = Vector2(0, 50)
+scale_amount_min = 2.0
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_grs3g")
+
+[node name="left" type="CPUParticles2D" parent="."]
+amount = 50
+lifetime = 0.5
+emission_shape = 3
+emission_rect_extents = Vector2(50, 1)
+spread = 5.0
+gravity = Vector2(50, 0)
+scale_amount_min = 2.0
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_grs3g")
+
+[node name="right" type="CPUParticles2D" parent="."]
+amount = 50
+lifetime = 0.5
+emission_shape = 3
+emission_rect_extents = Vector2(50, 1)
+spread = 5.0
+gravity = Vector2(-50, 0)
+scale_amount_min = 2.0
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_grs3g")

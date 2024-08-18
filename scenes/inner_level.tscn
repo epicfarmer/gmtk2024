@@ -27,8 +27,8 @@ scale = Vector2(0.083, 0.083)
 
 [node name="enter_boundary" parent="Boundary/Level" instance=ExtResource("6_ri15m")]
 scale = Vector2(12.0482, 12.0482)
-rect_x = 32
-rect_y = 16
+rect_x = 24
+rect_y = 10
 
 [node name="exit_boundary" parent="Boundary" instance=ExtResource("5_hbhat")]
 visible = false
