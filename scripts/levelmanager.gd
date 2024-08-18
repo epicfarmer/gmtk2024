@@ -1,18 +1,25 @@
 extends Node
 
 var levels = [
+	"res://levels/Level1.tscn",
 	"res://scenes/outer_level.tscn"
 ]
 
 var current_scene = null
-var level = "res://scenes/outer_level.tscn"
+var current_level = "res://levels/Level1.tscn"
 
 #func _ready():
 #	var root = get_tree().root
 #	current_scene = root.get_child(root.get_child_count() - 1)
 
 func restart():
-	goto_scene(level)
+	goto_scene(current_level)
+	
+func next_level():
+	var ind = levels.find(current_level)
+	current_level = levels[ind + 1]
+	goto_scene(current_level)
+	
 
 func goto_scene(path):
 	# This function will usually be called from a signal callback,

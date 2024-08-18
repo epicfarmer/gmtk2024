@@ -96,6 +96,7 @@ shape = SubResource("RectangleShape2D_1odvk")
 
 [node name="RecoilSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_j4mjs")
+volume_db = 2.971
 
 [connection signal="animation_finished" from="sprite" to="." method="_on_sprite_animation_finished"]
 [connection signal="body_entered" from="playerdetect" to="." method="_on_playerdetect_body_entered"]

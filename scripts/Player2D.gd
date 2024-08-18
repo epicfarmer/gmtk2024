@@ -77,7 +77,7 @@ func _physics_process(delta):
 		else:
 			animated_sprite.play("walk")
 	else:
-		animated_sprite.play("jump")
+		animated_sprite.play("jump") 
 	
 	if is_on_floor() and jumping:
 		jumping = false
@@ -99,8 +99,11 @@ func _unhandled_input(event: InputEvent) -> void:
 func _on_coyote_timer_timeout():
 	coyote = false
 
+func fade_to_black():
+	player.play("die")
+
 func die():
 	dying = true
 	AudioManager.stop()
 	death_audio.play()
-	player.play("die")
+	fade_to_black()

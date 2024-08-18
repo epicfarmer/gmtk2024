@@ -35,7 +35,6 @@ scale = Vector2(0.083, 0.083)
 [node name="enter_boundary" parent="Boundary" instance=ExtResource("6_ri15m")]
 visible = false
 position = Vector2(264, -56)
-scale = Vector2(1, 1)
 rect_x = 24
 rect_y = 10
 

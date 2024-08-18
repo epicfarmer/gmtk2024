@@ -112,7 +112,7 @@ func disable_boundary():
 
 func enable_boundary():
 	for child in self.get_children():
-		if child.name.begins_with("exit_boundary"):
+		if child.name.begins_with("exit_boundary"):	
 			child.visible = true
 		if child.name.begins_with("enter_boundary"):
 			child.visible = true
