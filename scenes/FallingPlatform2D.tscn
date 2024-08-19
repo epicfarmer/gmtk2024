@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://bjb2xix6qbngg"]
+[gd_scene load_steps=9 format=3 uid="uid://bjb2xix6qbngg"]
 
 [ext_resource type="Script" path="res://scripts/EnteringBody.gd" id="1_lpd8p"]
 [ext_resource type="TileSet" uid="uid://cm0nh06kmdhu4" path="res://scenes/tilesetBW.tres" id="2_dhss3"]
 [ext_resource type="Script" path="res://scripts/FallOnCollision.gd" id="3_bvplf"]
 [ext_resource type="AudioStream" uid="uid://dcuemfd6ru0av" path="res://audio/recoil.wav" id="4_4cs25"]
+[ext_resource type="AudioStream" uid="uid://qy0pgm7auynj" path="res://audio/grow.wav" id="5_7feua"]
+[ext_resource type="AudioStream" uid="uid://bv6lhisipy3pj" path="res://audio/shrink.wav" id="6_lxn6t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p7v18"]
 size = Vector2(48, 3.5)
@@ -44,5 +46,11 @@ shape = SubResource("RectangleShape2D_ibd3n")
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Area2D"]
 stream = ExtResource("4_4cs25")
 volume_db = 3.748
+
+[node name="GrowSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_7feua")
+
+[node name="ShrinkSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_lxn6t")
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

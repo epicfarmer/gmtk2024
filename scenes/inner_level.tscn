@@ -4,7 +4,7 @@
 [ext_resource type="TileSet" uid="uid://cm0nh06kmdhu4" path="res://scenes/tilesetBW.tres" id="2_aiu85"]
 [ext_resource type="PackedScene" uid="uid://cyy7f5sbhjqic" path="res://scenes/inner_inner_level.tscn" id="4_j4yyo"]
 [ext_resource type="PackedScene" uid="uid://ci4quix0m55xa" path="res://scenes/exit_boundary.tscn" id="5_hbhat"]
-[ext_resource type="PackedScene" uid="uid://s7yctcugkckq" path="res://scenes/killzone.tscn" id="6_55xot"]
+[ext_resource type="PackedScene" path="res://scenes/killzone.tscn" id="6_55xot"]
 [ext_resource type="PackedScene" uid="uid://c252hehmkbeyi" path="res://scenes/enter_boundary.tscn" id="6_ri15m"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_q5dc6"]

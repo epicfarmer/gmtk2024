@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://scripts/Enterable.gd" id="1_v5ts3"]
 [ext_resource type="TileSet" uid="uid://cm0nh06kmdhu4" path="res://scenes/tilesetBW.tres" id="2_kqlls"]
 [ext_resource type="PackedScene" uid="uid://cttlirq504m1f" path="res://scenes/Player2D.tscn" id="3_5o7e4"]
-[ext_resource type="PackedScene" uid="uid://s7yctcugkckq" path="res://scenes/killzone.tscn" id="4_8j7c6"]
-[ext_resource type="PackedScene" uid="uid://dvte0jf677c8h" path="res://scenes/level_complete_zone.tscn" id="4_doew0"]
+[ext_resource type="PackedScene" path="res://scenes/killzone.tscn" id="4_8j7c6"]
+[ext_resource type="PackedScene" path="res://scenes/level_complete_zone.tscn" id="4_doew0"]
 [ext_resource type="PackedScene" uid="uid://bjb2xix6qbngg" path="res://scenes/FallingPlatform2D.tscn" id="6_ifqlp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pb8uk"]

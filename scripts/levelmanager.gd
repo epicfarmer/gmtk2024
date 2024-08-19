@@ -1,14 +1,27 @@
 extends Node
 
+@export_dir var level_dir_name = "res://levels"
+
+
 var levels = [
 	"res://levels/Level1.tscn",
-	"res://scenes/outer_level.tscn"
+	"res://levels/outer_level.tscn"
 ]
 
 var current_scene = null
 var current_level = "res://levels/Level1.tscn"
 
-#func _ready():
+func _ready():
+	var level_dir = DirAccess.open(level_dir_name)
+	if level_dir:
+		level_dir.list_dir_begin()
+		var level_path = level_dir.get_next()
+		while level_path != "":
+			print(level_path)
+			levels.append(level_path)
+			level_path = level_dir.get_next()
+		current_level = levels[0]
+	restart()
 #	var root = get_tree().root
 #	current_scene = root.get_child(root.get_child_count() - 1)
 
@@ -45,7 +58,11 @@ func _deferred_goto_scene(path):
 	var s = ResourceLoader.load(path)
 
 	# Instance the new scene.
-	current_scene = s.instantiate()
+	if s != null:
+		current_scene = s.instantiate()
+	else:
+		go_to_menu()
+		return
 
 	# Add it to the active scene, as child of root.
 	get_tree().root.add_child(current_scene)
@@ -53,4 +70,5 @@ func _deferred_goto_scene(path):
 	# Optionally, to make it compatible with the SceneTree.change_scene_to_file() API.
 	get_tree().current_scene = current_scene
 
-
+func go_to_menu():
+	get_tree().quit()

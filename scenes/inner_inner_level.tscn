@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dy7bum431dn3o" path="res://scenes/spring.tscn" id="2_6e8q7"]
 [ext_resource type="TileSet" uid="uid://cm0nh06kmdhu4" path="res://scenes/tilesetBW.tres" id="2_w2tlg"]
 [ext_resource type="PackedScene" uid="uid://ci4quix0m55xa" path="res://scenes/exit_boundary.tscn" id="4_y6ckd"]
-[ext_resource type="PackedScene" uid="uid://s7yctcugkckq" path="res://scenes/killzone.tscn" id="5_xe74w"]
+[ext_resource type="PackedScene" path="res://scenes/killzone.tscn" id="5_xe74w"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_euiy6"]
 distance = -181.0

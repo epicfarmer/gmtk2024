@@ -52,9 +52,8 @@ func on_enter(scene):
 	print("here")
 	var audio = get_node("../ShrinkSound")
 	print(audio)
-	if audio != null:
+	if (audio != null) and is_inside_tree():
 		audio.play() 
-	
 
 func on_exit(scene):
 	can_enter = false
