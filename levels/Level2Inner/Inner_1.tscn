@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://damyddbgnp8o8"]
+
+[ext_resource type="Script" path="res://scripts/Enterable.gd" id="1_nupjo"]
+[ext_resource type="TileSet" uid="uid://cm0nh06kmdhu4" path="res://scenes/tilesetBW.tres" id="1_v4kq4"]
+[ext_resource type="PackedScene" path="res://scenes/killzone.tscn" id="4_5jmke"]
+[ext_resource type="PackedScene" uid="uid://ci4quix0m55xa" path="res://scenes/exit_boundary.tscn" id="4_ivf72"]
+[ext_resource type="PackedScene" uid="uid://1cbb8x06610a" path="res://scenes/FallingPlatform2D_1.tscn" id="5_ull7j"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_c1xac"]
+distance = -210.0
+
+[node name="Inner Level" type="Node2D"]
+
+[node name="Boundary" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_nupjo")
+
+[node name="Collision" type="CollisionPolygon2D" parent="Boundary"]
+polygon = PackedVector2Array(-128, -128, -128, 128, 128, 128, 128, -128)
+
+[node name="Tilemap" type="TileMap" parent="Boundary"]
+tile_set = ExtResource("1_v4kq4")
+format = 2
+layer_0/tile_data = PackedInt32Array(262141, 65536, 0, 262142, 65536, 0, 131076, 65536, 0, 65540, 65536, 0, 4, 65536, 0, -65532, 65536, 0, -131068, 65536, 0, -196604, 65536, 0, -262141, 65536, 0, -262142, 65536, 0, -262143, 65536, 0, -262144, 65536, 0, -196609, 65536, 0, -196610, 65536, 0, -196611, 65536, 0, -458759, 65536, 0, -458758, 65536, 0, -458757, 65536, 0, -458756, 65536, 0, -458755, 65536, 0, -458754, 65536, 0, -458753, 65536, 0, -524288, 65536, 0, -524287, 65536, 0, -524286, 65536, 0, -524285, 65536, 0, -524284, 65536, 0, -458748, 65536, 0, -458747, 65536, 0, -458746, 65536, 0, -524282, 65536, 0, -524283, 65536, 0, -524281, 65536, 0, -458745, 65536, 0, -393209, 65536, 0, -393210, 65536, 0, -393211, 65536, 0, -393212, 65536, 0, -393213, 65536, 0, -393214, 65536, 0, -393215, 65536, 0, -393216, 65536, 0, -327681, 65536, 0, -327682, 65536, 0, -327683, 65536, 0, -327684, 65536, 0, -327685, 65536, 0, -393222, 65536, 0, -393221, 65536, 0, -393220, 65536, 0, -393219, 65536, 0, -393218, 65536, 0, -393217, 65536, 0, -458752, 65536, 0, -458751, 65536, 0, -458750, 65536, 0, -458749, 65536, 0, -262148, 65536, 0, -262147, 65536, 0, -262146, 65536, 0, -262145, 65536, 0, -327680, 65536, 0, -327679, 65536, 0, -327678, 65536, 0, -327677, 65536, 0, -327676, 65536, 0, -327675, 65536, 0, -327674, 65536, 0, -327673, 65536, 0, -262138, 65536, 0, -262139, 65536, 0, -262140, 65536, 0, -262137, 65536, 0, -196601, 65536, 0, -131065, 65536, 0, -196602, 65536, 0, -196603, 65536, 0, -131067, 65536, 0, -131066, 65536, 0, -65530, 65536, 0, -65529, 65536, 0, 7, 65536, 0, 65543, 65536, 0, 131079, 65536, 0, 196615, 65536, 0, 131078, 65536, 0, 65542, 65536, 0, 6, 65536, 0, -65531, 65536, 0, 5, 65536, 0, 65541, 65536, 0, 131077, 65536, 0, 196612, 65536, 0, 196613, 65536, 0, 196614, 65536, 0, 262150, 65536, 0, 262151, 65536, 0, 327687, 65536, 0, 393223, 65536, 0, 458759, 65536, 0, 458758, 65536, 0, 458757, 65536, 0, 458756, 65536, 0, 262148, 65536, 0, 262149, 65536, 0, 327686, 65536, 0, 393222, 65536, 0, 393221, 65536, 0, 393220, 65536, 0, 327684, 65536, 0, 327685, 65536, 0, 524286, 65536, 0, 524285, 65536, 0, 458748, 65536, 0, 458747, 65536, 0, 458746, 65536, 0, 524282, 65536, 0, 524281, 65536, 0, 524283, 65536, 0, 524284, 65536, 0, 393211, 65536, 0, 393212, 65536, 0, 327676, 65536, 0, 327677, 65536, 0, 327678, 65536, 0, 393214, 65536, 0, 458750, 65536, 0, 458749, 65536, 0, 393213, 65536, 0, 196610, 65536, 0, 196611, 65536, 0, 262147, 65536, 0, 262146, 65536, 0, 393218, 65536, 0, 327682, 65536, 0, 393219, 65536, 0, 458755, 65536, 0, 458754, 65536, 0, 327683, 65536, 0, 589816, 65536, 0, 589817, 65536, 0, -524296, 65536, 0, -524295, 65536, 0)
+
+[node name="exit_boundary" parent="Boundary" instance=ExtResource("4_ivf72")]
+visible = false
+origin = Vector2(-128, -128)
+extents = Vector2(128, 128)
+
+[node name="killzone2" parent="Boundary" instance=ExtResource("4_5jmke")]
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundary/killzone2"]
+shape = SubResource("WorldBoundaryShape2D_c1xac")
+
+[node name="FallingPlatform" parent="Boundary" instance=ExtResource("5_ull7j")]
+position = Vector2(24, 51)
+
+[connection signal="body_entered" from="Boundary" to="Boundary" method="_on_body_entered"]
+[connection signal="body_exited" from="Boundary" to="Boundary" method="_on_body_exited"]

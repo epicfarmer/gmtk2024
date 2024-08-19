@@ -3,36 +3,41 @@ extends Node
 @export_dir var level_dir_name = "res://levels"
 
 
-var levels = [
-	"res://levels/Level1.tscn",
-	"res://levels/outer_level.tscn"
-]
+var levels = []
 
-var current_scene = null
 var current_level = "res://levels/Level1.tscn"
 
 func _ready():
+	# Pull all levels from `level_dir_name` and start the first one.
+	# This will just quit to menu if the levels aren't found for whatever reason
+	# Levels are loaded in alphabetical order
+	_populate_levels()
+	current_level = levels[0]
+	restart()
+#	var root = get_tree().root
+
+func _populate_levels():
+	# Populate the levels variable by reading all files in the levels directory
+	# Levels are ordered alphabetically
 	var level_dir = DirAccess.open(level_dir_name)
 	if level_dir:
 		level_dir.list_dir_begin()
 		var level_path = level_dir.get_next()
 		while level_path != "":
 			print(level_path)
-			levels.append(level_path)
+			levels.append(level_dir_name + "/" + level_path)
 			level_path = level_dir.get_next()
-		current_level = levels[0]
-	restart()
-#	var root = get_tree().root
-#	current_scene = root.get_child(root.get_child_count() - 1)
+	if len(levels) == 0:
+		push_error("Failed to load any levels.")
+	levels.sort()
 
 func restart():
 	goto_scene(current_level)
-	
+
 func next_level():
 	var ind = levels.find(current_level)
 	current_level = levels[ind + 1]
 	goto_scene(current_level)
-	
 
 func goto_scene(path):
 	# This function will usually be called from a signal callback,
@@ -47,9 +52,9 @@ func goto_scene(path):
 	call_deferred("_deferred_goto_scene", path)
 	AudioManager.start()
 
-
 func _deferred_goto_scene(path):
 	# It is now safe to remove the current scene.
+
 	var root = get_tree().root
 	var current_scene = root.get_child(root.get_child_count() - 1)
 	current_scene.free()

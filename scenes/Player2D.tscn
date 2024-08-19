@@ -12,7 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://dieuiroc34pi5" path="res://audio/jump.wav" id="9_u2mvx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fhvav"]
-size = Vector2(7, 13)
+size = Vector2(7, 6)
 
 [sub_resource type="Animation" id="Animation_7bl7h"]
 length = 2.0
@@ -228,12 +228,12 @@ collision_layer = 5
 script = ExtResource("1_k32q1")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 1.5)
+position = Vector2(0.5, -3)
 shape = SubResource("RectangleShape2D_fhvav")
 debug_color = Color(1, 0.85098, 0, 0.419608)
 
 [node name="Camera" type="Camera2D" parent="."]
-position = Vector2(0, 1.27085)
+position = Vector2(0, -6.72915)
 scale = Vector2(1, 0.942057)
 
 [node name="ParentView" parent="Camera" instance=ExtResource("2_naxnl")]
@@ -242,6 +242,7 @@ offset_top = 133.0
 offset_right = 510.0
 offset_bottom = 269.0
 stretch = true
+metadata/_edit_use_anchors_ = true
 
 [node name="DeathOverlay" type="CanvasLayer" parent="Camera"]
 
@@ -249,9 +250,12 @@ stretch = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -8.0
+offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0)
+metadata/_edit_use_anchors_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Camera/DeathOverlay/ColorRect")
@@ -260,6 +264,7 @@ libraries = {
 }
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_p5m4b")
 animation = &"walk"
 
@@ -271,6 +276,7 @@ hframes = 6
 vframes = 5
 
 [node name="CameraControl" type="Node2D" parent="."]
+position = Vector2(0, -8)
 
 [node name="CoyoteTimer" type="Timer" parent="."]
 wait_time = 0.1
@@ -281,21 +287,27 @@ wait_time = 0.1
 one_shot = true
 
 [node name="EnteringBody" type="Node2D" parent="."]
+position = Vector2(0, -8)
 script = ExtResource("5_ibwu6")
 
 [node name="SpringJumpSound" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(0, -8)
 stream = ExtResource("6_0rm55")
 
 [node name="GrowSound" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(0, -8)
 stream = ExtResource("7_tmyej")
 
 [node name="ShrinkSound" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(0, -8)
 stream = ExtResource("8_1oild")
 
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(0, -8)
 stream = ExtResource("9_ku3le")
 
 [node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(0, -8)
 stream = ExtResource("9_u2mvx")
 
 [connection signal="timeout" from="CoyoteTimer" to="." method="_on_coyote_timer_timeout"]

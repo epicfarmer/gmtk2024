@@ -48,7 +48,7 @@ func _get_current_level() -> Node:
 
 func _get_entering_body(body) -> EnteringBody:
 	return body.get_node("EnteringBody")
-	
+
 func _set_body_position_enter(body) -> void:
 	var ray = AABBRayCast2D.new()
 	_get_current_level().add_child(ray)
@@ -61,6 +61,12 @@ func _set_body_position_enter(body) -> void:
 func enter(body: CollisionObject2D) -> void:
 	if body.get_parent() == inner_scene:
 		return
+	if _get_entering_body(body).has_camera:
+		tmp_parent = _get_entering_body(body).get_parent_view()
+		var viewport: SubViewport = tmp_parent.get_node("SubViewport")
+		var camera = viewport.get_node("Camera")
+		camera.position = body.position
+
 	_set_body_position_enter(body)
 	if _get_entering_body(body).has_camera:
 		tmp_parent = _get_entering_body(body).get_parent_view()
@@ -85,7 +91,7 @@ func enter(body: CollisionObject2D) -> void:
 
 func wait(seconds) -> void:
 	await get_tree().create_timer(seconds).timeout
-	
+
 func exit(body: CollisionObject2D) -> void:
 	if _get_current_level() == outer_scene:
 		return
@@ -112,13 +118,13 @@ func disable_boundary():
 
 func enable_boundary():
 	for child in self.get_children():
-		if child.name.begins_with("exit_boundary"):	
+		if child.name.begins_with("exit_boundary"):
 			child.visible = true
 		if child.name.begins_with("enter_boundary"):
 			child.visible = true
 		if child.name.begins_with("killzone"):
 			child.monitoring = true
-	
+
 # SIGNALS
 
 func _on_body_entered(body):
@@ -134,4 +140,4 @@ func _on_body_exited(body):
 		entering_body.on_exit(outer_scene)
 		call_deferred("exit", body)
 		print(body, "is exiting ", self)
-		
+

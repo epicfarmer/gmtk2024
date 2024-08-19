@@ -4,8 +4,8 @@
 [ext_resource type="TileSet" uid="uid://cm0nh06kmdhu4" path="res://scenes/tilesetBW.tres" id="2_kqlls"]
 [ext_resource type="PackedScene" uid="uid://cttlirq504m1f" path="res://scenes/Player2D.tscn" id="3_5o7e4"]
 [ext_resource type="PackedScene" path="res://scenes/killzone.tscn" id="4_8j7c6"]
-[ext_resource type="PackedScene" path="res://scenes/level_complete_zone.tscn" id="4_doew0"]
-[ext_resource type="PackedScene" uid="uid://bjb2xix6qbngg" path="res://scenes/FallingPlatform2D.tscn" id="6_ifqlp"]
+[ext_resource type="PackedScene" uid="uid://c3kssdpdyt7hw" path="res://scenes/level_complete_zone.tscn" id="4_doew0"]
+[ext_resource type="PackedScene" uid="uid://bjb2xix6qbngg" path="res://scenes/FallingPlatform2D_3.tscn" id="6_ifqlp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pb8uk"]
 size = Vector2(112, 5)
@@ -23,7 +23,6 @@ layer_0/tile_data = PackedInt32Array(0, 65536, 0, 1, 65536, 0, 2, 65536, 0, 3, 6
 
 [node name="FallingPlatform" parent="." instance=ExtResource("6_ifqlp")]
 position = Vector2(-121, -16)
-lock_rotation = true
 freeze = false
 
 [node name="Player" parent="." instance=ExtResource("3_5o7e4")]

@@ -1,22 +1,23 @@
-[gd_scene load_steps=9 format=3 uid="uid://bjb2xix6qbngg"]
+[gd_scene load_steps=9 format=3 uid="uid://1cbb8x06610a"]
 
-[ext_resource type="Script" path="res://scripts/EnteringBody.gd" id="1_lpd8p"]
-[ext_resource type="TileSet" uid="uid://cm0nh06kmdhu4" path="res://scenes/tilesetBW.tres" id="2_dhss3"]
-[ext_resource type="Script" path="res://scripts/FallOnCollision.gd" id="3_bvplf"]
-[ext_resource type="AudioStream" uid="uid://dcuemfd6ru0av" path="res://audio/recoil.wav" id="4_4cs25"]
-[ext_resource type="AudioStream" uid="uid://qy0pgm7auynj" path="res://audio/grow.wav" id="5_7feua"]
-[ext_resource type="AudioStream" uid="uid://bv6lhisipy3pj" path="res://audio/shrink.wav" id="6_lxn6t"]
+[ext_resource type="Script" path="res://scripts/EnteringBody.gd" id="1_okaon"]
+[ext_resource type="TileSet" uid="uid://cm0nh06kmdhu4" path="res://scenes/tilesetBW.tres" id="2_1vlwi"]
+[ext_resource type="Script" path="res://scripts/FallOnCollision.gd" id="3_6yd0g"]
+[ext_resource type="AudioStream" uid="uid://dcuemfd6ru0av" path="res://audio/recoil.wav" id="4_gsseb"]
+[ext_resource type="AudioStream" uid="uid://qy0pgm7auynj" path="res://audio/grow.wav" id="5_yy5ro"]
+[ext_resource type="AudioStream" uid="uid://bv6lhisipy3pj" path="res://audio/shrink.wav" id="6_7eawm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p7v18"]
-size = Vector2(48, 3.5)
+size = Vector2(16, 3.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ibd3n"]
-size = Vector2(48, 1)
+size = Vector2(16, 1)
 
 [node name="FallingPlatform" type="RigidBody2D"]
 collision_layer = 3
 collision_mask = 3
 gravity_scale = 0.1
+lock_rotation = true
 freeze = true
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
@@ -26,31 +27,31 @@ shape = SubResource("RectangleShape2D_p7v18")
 debug_color = Color(0, 0.980392, 0.0823529, 0.419608)
 
 [node name="EnteringBody" type="Node2D" parent="."]
-script = ExtResource("1_lpd8p")
+script = ExtResource("1_okaon")
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(-8, -2)
-tile_set = ExtResource("2_dhss3")
+tile_set = ExtResource("2_1vlwi")
 format = 2
-layer_0/tile_data = PackedInt32Array(65535, 262144, 0, 0, 327680, 0, 1, 393216, 0)
+layer_0/tile_data = PackedInt32Array(0, 196608, 0)
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 4
-script = ExtResource("3_bvplf")
+script = ExtResource("3_6yd0g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, -2.5)
 shape = SubResource("RectangleShape2D_ibd3n")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Area2D"]
-stream = ExtResource("4_4cs25")
+stream = ExtResource("4_gsseb")
 volume_db = 3.748
 
 [node name="GrowSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("5_7feua")
+stream = ExtResource("5_yy5ro")
 
 [node name="ShrinkSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("6_lxn6t")
+stream = ExtResource("6_7eawm")
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
