@@ -1,0 +1,33 @@
+[remap]
+
+importer="font_data_dynamic"
+type="FontFile"
+uid="uid://cv3673t15t5j6"
+path="res://.godot/imported/8-BIT WONDER.TTF-4911e27ae6b58d9409bf528627733919.fontdata"
+
+[deps]
+
+source_file="res://images/8-BIT WONDER.TTF"
+dest_files=["res://.godot/imported/8-BIT WONDER.TTF-4911e27ae6b58d9409bf528627733919.fontdata"]
+
+[params]
+
+Rendering=null
+antialiasing=1
+generate_mipmaps=false
+multichannel_signed_distance_field=false
+msdf_pixel_range=8
+msdf_size=48
+allow_system_fallback=true
+force_autohinter=false
+hinting=1
+subpixel_positioning=1
+oversampling=0.0
+Fallbacks=null
+fallbacks=[]
+Compress=null
+compress=true
+preload=[]
+language_support={}
+script_support={}
+opentype_features={}
