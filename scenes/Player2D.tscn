@@ -224,7 +224,7 @@ animations = [{
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_dis6u"]
 
 [node name="Player" type="CharacterBody2D"]
-collision_layer = 5
+collision_layer = 7
 script = ExtResource("1_k32q1")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]

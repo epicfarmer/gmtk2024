@@ -24,12 +24,13 @@ func _populate_levels():
 		level_dir.list_dir_begin()
 		var level_path = level_dir.get_next()
 		while level_path != "":
-			print(level_path)
-			levels.append(level_dir_name + "/" + level_path)
+			if "Inner" not in level_path:
+				levels.append(level_dir_name + "/" + level_path)
 			level_path = level_dir.get_next()
 	if len(levels) == 0:
 		push_error("Failed to load any levels.")
 	levels.sort()
+	print(levels)
 
 func restart():
 	goto_scene(current_level)
