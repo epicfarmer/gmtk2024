@@ -9,7 +9,9 @@ func _ready():
 func unfreeze_parent():
 	if(parent.freeze): 
 		audio.play()
+	# parent.frozen = false
 	parent.freeze = false
+	
 
 func _on_body_entered(_body):
 	call_deferred("unfreeze_parent")

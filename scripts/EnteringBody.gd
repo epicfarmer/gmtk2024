@@ -20,21 +20,27 @@ func _ready() -> void:
 	entry_timer.one_shot = true
 	has_camera = body.has_node("Camera")
 	parent_scene = body.get_parent()
-	frozen = false
+	if has_camera:
+		frozen = false
+	else:
+		frozen = true
 
 func freeze_body():
 	if not frozen:
 		body.freeze = true
 		entry_timer.paused = true
-	frozen = true
 
-func unfreeze_body():
+func unfreeze_body(): 
 	if frozen:
 		body.freeze = false
 		entry_timer.paused = false
-	frozen = false
 
 func _process(_delta):
+	if frozen:
+		if not body.freeze:
+			frozen = false
+		else:
+			return
 	if not has_camera and parent_scene.inside:
 		call_deferred("unfreeze_body")
 	elif not has_camera and not parent_scene.inside:
@@ -49,9 +55,12 @@ func on_enter(scene):
 	else:
 		entry_timer.autostart = true
 	parent_scene = scene
-	print("here")
+
+	if not (has_camera or not self.frozen):
+		return
+		
 	var audio = get_node("../ShrinkSound")
-	print(audio)
+
 	if (audio != null) and is_inside_tree():
 		audio.play() 
 
@@ -62,6 +71,9 @@ func on_exit(scene):
 	else:
 		entry_timer.autostart = true
 	parent_scene = scene
+	
+	if not (has_camera or not self.frozen):
+		return
 	var audio = get_node("../GrowSound")
 	if audio != null:
 		audio.play() 

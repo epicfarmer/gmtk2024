@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c252hehmkbeyi" path="res://scenes/enter_boundary.tscn" id="5_48jly"]
 [ext_resource type="PackedScene" uid="uid://ci4quix0m55xa" path="res://scenes/exit_boundary.tscn" id="6_k1r8j"]
 [ext_resource type="PackedScene" uid="uid://bjb2xix6qbngg" path="res://scenes/FallingPlatform2D_3.tscn" id="7_pyidj"]
-[ext_resource type="PackedScene" path="res://scenes/killzone.tscn" id="8_rgrgt"]
+[ext_resource type="PackedScene" uid="uid://s7yctcugkckq" path="res://scenes/killzone.tscn" id="8_rgrgt"]
 [ext_resource type="PackedScene" uid="uid://c3kssdpdyt7hw" path="res://scenes/level_complete_zone.tscn" id="9_2ftxj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_63eq4"]
@@ -48,7 +48,6 @@ extents = Vector2(288, 96)
 
 [node name="FallingPlatform" parent="." instance=ExtResource("7_pyidj")]
 position = Vector2(56, -35)
-freeze = false
 
 [node name="killzone" parent="." instance=ExtResource("8_rgrgt")]
 

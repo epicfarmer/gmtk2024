@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c252hehmkbeyi" path="res://scenes/enter_boundary.tscn" id="5_u4vy2"]
 [ext_resource type="PackedScene" uid="uid://damyddbgnp8o8" path="res://levels/Level2Inner/Inner_1.tscn" id="6_dnkbp"]
 [ext_resource type="PackedScene" uid="uid://bf3a70yd8pu2o" path="res://levels/Level2Inner/Inner_2.tscn" id="8_b050h"]
-[ext_resource type="PackedScene" path="res://scenes/killzone.tscn" id="8_pdv6g"]
+[ext_resource type="PackedScene" uid="uid://s7yctcugkckq" path="res://scenes/killzone.tscn" id="8_pdv6g"]
 [ext_resource type="PackedScene" uid="uid://c3kssdpdyt7hw" path="res://scenes/level_complete_zone.tscn" id="9_77pf7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_63eq4"]
@@ -19,7 +19,7 @@ distance = -384.0
 size = Vector2(32, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tdry8"]
-size = Vector2(65, 3)
+size = Vector2(62, 3)
 
 [node name="OuterLevel" type="Area2D"]
 script = ExtResource("1_t64aj")
@@ -58,7 +58,7 @@ shape = SubResource("RectangleShape2D_8ngr2")
 position = Vector2(145, -34)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="killzone3"]
-position = Vector2(0.5, 0.5)
+position = Vector2(-1, 0.5)
 shape = SubResource("RectangleShape2D_tdry8")
 
 [node name="Inner Level" parent="." instance=ExtResource("6_dnkbp")]

@@ -13,7 +13,7 @@ func _ready():
 	# Levels are loaded in alphabetical order
 	_populate_levels()
 	current_level = levels[0]
-	restart()
+	#restart()
 #	var root = get_tree().root
 
 func _populate_levels():
