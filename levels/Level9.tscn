@@ -7,7 +7,7 @@
 
 [sub_resource type="Theme" id="Theme_cln43"]
 default_font = ExtResource("3_awtlf")
-default_font_size = 8
+default_font_size = 12
 
 [sub_resource type="Curve" id="Curve_j5gse"]
 _data = [Vector2(0.00561798, 1), 0.0, 0.0, 0, 0, Vector2(0.752809, 0.131868), 0.0, 0.0, 0, 0]
@@ -22,7 +22,6 @@ offset_top = -74.0
 offset_right = 151.0
 offset_bottom = -58.0
 theme = SubResource("Theme_cln43")
-theme_override_font_sizes/font_size = 16
 text = "Thanks for Playing"
 horizontal_alignment = 1
 
