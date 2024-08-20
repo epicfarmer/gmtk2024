@@ -1,0 +1,67 @@
+[gd_scene load_steps=10 format=3 uid="uid://c0n7qfqemb72b"]
+
+[ext_resource type="Script" path="res://scripts/Enterable.gd" id="1_21o2t"]
+[ext_resource type="TileSet" uid="uid://cm0nh06kmdhu4" path="res://scenes/tilesetBW.tres" id="2_0ko7g"]
+[ext_resource type="Texture2D" uid="uid://k4swijtq6c1m" path="res://images/downscaled_title.png" id="3_p13x6"]
+[ext_resource type="PackedScene" uid="uid://cttlirq504m1f" path="res://scenes/Player2D.tscn" id="4_u1r1o"]
+[ext_resource type="FontFile" uid="uid://cv3673t15t5j6" path="res://images/8-BIT WONDER.TTF" id="5_p43b0"]
+[ext_resource type="PackedScene" uid="uid://c3kssdpdyt7hw" path="res://scenes/level_complete_zone.tscn" id="6_8a13o"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_f4soy"]
+font = ExtResource("5_p43b0")
+font_size = 12
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cgdei"]
+size = Vector2(32, 32)
+
+[sub_resource type="Curve" id="Curve_73nvu"]
+_data = [Vector2(0.0561798, 0.945055), 0.0, 0.0, 0, 0, Vector2(0.640449, 0.527472), 0.0, 0.0, 0, 0, Vector2(0.94382, 0.0879121), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="Level0" type="Area2D"]
+script = ExtResource("1_21o2t")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("2_0ko7g")
+format = 2
+layer_0/tile_data = PackedInt32Array(65526, 65536, 0, 131062, 65536, 0, 65527, 65536, 0, 131063, 65536, 0, 65528, 65536, 0, 131064, 65536, 0, 65529, 65536, 0, 131065, 65536, 0, 65530, 65536, 0, 131066, 65536, 0, 65531, 65536, 0, 131067, 65536, 0, 65532, 65536, 0, 131068, 65536, 0, 65533, 65536, 0, 131069, 65536, 0, 65534, 65536, 0, 131070, 65536, 0, 65535, 65536, 0, 131071, 65536, 0, 0, 65536, 0, 65536, 65536, 0, 1, 65536, 0, 65537, 65536, 0, 2, 65536, 0, 65538, 65536, 0, 3, 65536, 0, 65539, 65536, 0, 4, 65536, 0, 65540, 65536, 0, 5, 65536, 0, 65541, 65536, 0, 6, 65536, 0, 65542, 65536, 0, 7, 65536, 0, 65543, 65536, 0, 8, 65536, 0, 65544, 65536, 0, 9, 65536, 0, 65545, 65536, 0, -131063, 327680, 1, -131064, 327680, 1, -65528, 327680, 1, -65527, 327680, 1, -65546, 327680, 1, -65545, 327680, 1, -9, 327680, 1, -10, 327680, 1)
+
+[node name="DownscaledTitle" type="Sprite2D" parent="."]
+position = Vector2(0, -128)
+texture = ExtResource("3_p13x6")
+
+[node name="Player" parent="." instance=ExtResource("4_u1r1o")]
+
+[node name="Label" type="Label" parent="."]
+offset_left = -160.0
+offset_top = 32.0
+offset_right = 74.0
+offset_bottom = 74.0
+text = "to move and jump
+use arrow keys or a w d
+controller supported
+esc to exit"
+label_settings = SubResource("LabelSettings_f4soy")
+
+[node name="LevelCompleteZone" parent="." instance=ExtResource("6_8a13o")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelCompleteZone"]
+position = Vector2(144, -16)
+shape = SubResource("RectangleShape2D_cgdei")
+
+[node name="LevelCompleteZone2" parent="." instance=ExtResource("6_8a13o")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelCompleteZone2"]
+position = Vector2(-144, -16)
+shape = SubResource("RectangleShape2D_cgdei")
+
+[node name="up" type="CPUParticles2D" parent="."]
+amount = 50
+lifetime = 2.0
+emission_shape = 3
+emission_rect_extents = Vector2(160, 1)
+spread = 5.0
+gravity = Vector2(0, -50)
+scale_amount_min = 2.0
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_73nvu")

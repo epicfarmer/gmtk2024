@@ -3,15 +3,15 @@ extends Node
 @export_dir var level_dir_name = "res://levels"
 
 
-var levels = []
+var levels = ["res://levels/Level0.tscn","res://levels/Level1.tscn","res://levels/Level2.tscn","res://levels/Level3.tscn","res://levels/Level9.tscn"]
 
-var current_level = "res://levels/Level1.tscn"
+var current_level = "res://levels/Level0.tscn"
 
 func _ready():
 	# Pull all levels from `level_dir_name` and start the first one.
 	# This will just quit to menu if the levels aren't found for whatever reason
 	# Levels are loaded in alphabetical order
-	_populate_levels()
+	#_populate_levels()
 	current_level = levels[0]
 	#restart()
 #	var root = get_tree().root
