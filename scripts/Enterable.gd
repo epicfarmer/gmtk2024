@@ -12,6 +12,7 @@ var previous_level
 var reparenting = false
 var inside: bool = false
 var epsilon: float = 0.1
+@export var outer_camera_position: Vector2 = Vector2(0,0)
 
 var to_unfreeze_on_entry: Array[EnteringBody]
 var to_set_viewport_on_exit: Array[Enterable]
@@ -65,6 +66,7 @@ func enter(body: CollisionObject2D) -> void:
 		tmp_parent = _get_entering_body(body).get_parent_view()
 		var viewport: SubViewport = tmp_parent.get_node("SubViewport")
 		var camera = viewport.get_node("Camera")
+		outer_camera_position = camera.global_position
 		camera.position = body.position
 
 	_set_body_position_enter(body)
@@ -82,7 +84,7 @@ func enter(body: CollisionObject2D) -> void:
 		var viewport: SubViewport = tmp_parent.get_node("SubViewport")
 		var existing_children = viewport.get_children()
 		for child in existing_children:
-			if child is Enterable:
+			if (child is Enterable) or (child is EnteringBody):
 				to_set_viewport_on_exit.push_back(child)
 				viewport.remove_child(child)
 		viewport.add_child(outer_scene)
@@ -104,6 +106,13 @@ func exit(body: CollisionObject2D) -> void:
 	_change_parent(body, outer_scene)
 	if _get_entering_body(body).has_camera:
 		inner_parent.add_child(inner_scene)
+		var viewport: SubViewport = tmp_parent.get_node("SubViewport")
+		var camera = viewport.get_node("Camera")
+		for child in to_set_viewport_on_exit:
+			if child is Enterable:
+				viewport.add_child(child)
+			to_set_viewport_on_exit = []
+		camera.position = outer_camera_position
 		inside = false
 		_get_current_level().enable_boundary()
 
