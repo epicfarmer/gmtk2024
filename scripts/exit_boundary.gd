@@ -1,3 +1,4 @@
+@tool
 extends Node2D
 
 @export var origin = Vector2(0,0)

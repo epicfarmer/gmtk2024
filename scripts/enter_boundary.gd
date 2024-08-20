@@ -1,3 +1,4 @@
+@tool
 extends Node2D
 
 @export var rect_x = 50

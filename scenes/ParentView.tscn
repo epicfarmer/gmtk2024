@@ -1,9 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://b1urmpxbwo38v"]
+[gd_scene load_steps=2 format=3 uid="uid://b1urmpxbwo38v"]
 
 [ext_resource type="PackedScene" uid="uid://ci4quix0m55xa" path="res://scenes/exit_boundary.tscn" id="1_01mms"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_es0t4"]
-size = Vector2(512, 384)
 
 [node name="Parent View" type="SubViewportContainer"]
 offset_left = -480.0
@@ -23,14 +20,6 @@ render_target_update_mode = 4
 
 [node name="Camera" type="Camera2D" parent="SubViewport"]
 
-[node name="exit_boundary" parent="SubViewport" instance=ExtResource("1_01mms")]
+[node name="exit_boundary" parent="SubViewport/Camera" instance=ExtResource("1_01mms")]
 origin = Vector2(-88, -40)
-extents = Vector2(160, 64)
-
-[node name="Area2D" type="Area2D" parent="."]
-position = Vector2(480, 270)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-225, -77)
-shape = SubResource("RectangleShape2D_es0t4")
-debug_color = Color(0.0313726, 0, 1, 0.639216)
+extents = Vector2(88, 40)
