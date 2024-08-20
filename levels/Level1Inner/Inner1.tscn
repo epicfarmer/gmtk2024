@@ -1,8 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://c72u8y7hcyjks"]
+[gd_scene load_steps=6 format=3 uid="uid://c72u8y7hcyjks"]
 
 [ext_resource type="Script" path="res://scripts/Enterable.gd" id="1_k0i81"]
 [ext_resource type="TileSet" uid="uid://cm0nh06kmdhu4" path="res://scenes/tilesetBW.tres" id="2_oh41b"]
+[ext_resource type="PackedScene" uid="uid://s7yctcugkckq" path="res://scenes/killzone.tscn" id="4_62n80"]
 [ext_resource type="PackedScene" uid="uid://ci4quix0m55xa" path="res://scenes/exit_boundary.tscn" id="5_47mgo"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0vh1w"]
+distance = -454.0
 
 [node name="Level" type="Node2D"]
 
@@ -23,6 +27,12 @@ layer_0/tile_data = PackedInt32Array(131062, 196608, 1, 65581, 196608, 1, 65580,
 visible = false
 origin = Vector2(-470, -433)
 extents = Vector2(1164, 234)
+
+[node name="killzone" parent="Boundary" instance=ExtResource("4_62n80")]
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundary/killzone"]
+shape = SubResource("WorldBoundaryShape2D_0vh1w")
 
 [connection signal="body_entered" from="Boundary" to="Boundary" method="_on_body_entered"]
 [connection signal="body_exited" from="Boundary" to="Boundary" method="_on_body_exited"]

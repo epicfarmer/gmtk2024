@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bj64aqi61xir1"]
+[gd_scene load_steps=12 format=3 uid="uid://bj64aqi61xir1"]
 
 [ext_resource type="Script" path="res://scripts/Enterable.gd" id="1_v5ts3"]
 [ext_resource type="TileSet" uid="uid://cm0nh06kmdhu4" path="res://scenes/tilesetBW.tres" id="2_kqlls"]
@@ -11,6 +11,9 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pb8uk"]
 size = Vector2(112, 5)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_mf80h"]
+distance = -186.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sq3po"]
 size = Vector2(32, 32)
@@ -48,6 +51,11 @@ position = Vector2(-150.706, 13.108)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="killzone2"]
 position = Vector2(30.7061, 34.392)
 shape = SubResource("RectangleShape2D_pb8uk")
+
+[node name="killzone3" parent="." instance=ExtResource("4_8j7c6")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="killzone3"]
+shape = SubResource("WorldBoundaryShape2D_mf80h")
 
 [node name="LevelCompleteZone" parent="." instance=ExtResource("4_doew0")]
 
