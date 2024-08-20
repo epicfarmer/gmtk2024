@@ -57,7 +57,7 @@ func _set_body_position_enter(body) -> void:
 	_get_current_level().remove_child(ray)
 	var new_position = inner_scene.to_local(collision_global_position)
 	body.position = new_position
-	body.scale = Vector2.ONE
+	body.global_scale = Vector2.ONE
 
 func enter(body: CollisionObject2D) -> void:
 	if body.get_parent() == inner_scene:
