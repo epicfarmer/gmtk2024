@@ -8,8 +8,8 @@ func _on_body_entered(body):
 	var entering_body = body.get_node("EnteringBody")
 	if entering_body.can_enter and entering_body.can_exit:
 		body.die()
-	print_debug(self, " killed the player", body)
-	restart_timer.start()
+		print_debug(self, " killed the player", body)
+		restart_timer.start()
 	
 
 func _on_timer_timeout():
