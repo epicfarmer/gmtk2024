@@ -4,14 +4,12 @@ extends Area2D
 @onready var audio = $AudioStreamPlayer2D
 
 func _ready():
-	parent.freeze = true
+	parent.get_node("EnteringBody").freeze_body()
 
 func unfreeze_parent():
 	if(parent.freeze): 
 		audio.play()
-	# parent.frozen = false
-	parent.freeze = false
-	
+	parent.get_node("EnteringBody").unfreeze_body()
 
 func _on_body_entered(_body):
 	call_deferred("unfreeze_parent")

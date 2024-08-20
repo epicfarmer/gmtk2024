@@ -1,9 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://xuavyej8sej7"]
+[gd_scene load_steps=7 format=3]
 
 [ext_resource type="Script" path="res://scripts/Enterable.gd" id="1_7g6kd"]
-[ext_resource type="TileSet" uid="uid://cm0nh06kmdhu4" path="res://scenes/tilesetBW.tres" id="2_i80p0"]
-[ext_resource type="FontFile" uid="uid://cv3673t15t5j6" path="res://images/8-BIT WONDER.TTF" id="3_awtlf"]
-[ext_resource type="PackedScene" uid="uid://cttlirq504m1f" path="res://scenes/Player2D.tscn" id="4_e62sq"]
+[ext_resource type="TileSet" path="res://scenes/tilesetBW.tres" id="2_i80p0"]
+[ext_resource type="FontFile" path="res://images/8-BIT WONDER.TTF" id="3_awtlf"]
+[ext_resource type="PackedScene" path="res://scenes/Player2D.tscn" id="4_e62sq"]
 
 [sub_resource type="Theme" id="Theme_cln43"]
 default_font = ExtResource("3_awtlf")

@@ -10,6 +10,7 @@ var has_camera: bool = false
 var body: CollisionObject2D
 var parent_scene
 var frozen: bool = false
+var paused: bool = false
 
 func _ready() -> void:
 	body = get_parent()
@@ -20,68 +21,77 @@ func _ready() -> void:
 	entry_timer.one_shot = true
 	has_camera = body.has_node("Camera")
 	parent_scene = body.get_parent()
-	if has_camera:
-		frozen = false
-	else:
-		frozen = true
 
 func freeze_body():
-	if not frozen:
+	body.freeze = true
+	frozen = true
+
+func unfreeze_body():
+	body.freeze = false
+	frozen = false
+
+func pause_body():
+	# For pausing caused by entry and exit of scene
+	if not paused:
 		body.freeze = true
 		entry_timer.paused = true
+	paused = true
 
-func unfreeze_body(): 
-	if frozen:
+func unpause_body():
+	# For pausing caused by entry and exit of scene
+	if paused and not frozen:
 		body.freeze = false
+	if paused:
 		entry_timer.paused = false
+		entry_timer.start()
+	paused = false
 
 func _process(_delta):
 	if frozen:
-		if not body.freeze:
-			frozen = false
-		else:
-			return
+		body.freeze = true
 	if not has_camera and parent_scene.inside:
-		call_deferred("unfreeze_body")
+		call_deferred("unpause_body")
 	elif not has_camera and not parent_scene.inside:
-		call_deferred("freeze_body")
+		call_deferred("pause_body")
 	else:
 		pass
 
 func on_enter(scene):
 	can_exit = false
+	entry_timer.autostart = true
 	if is_inside_tree():
 		entry_timer.start()
-	else:
-		entry_timer.autostart = true
+	print("Timer info")
+	print(entry_timer.paused)
+	print(entry_timer.autostart)
+	print(entry_timer.one_shot)
+	print(entry_timer.is_stopped())
+	print(entry_timer.time_left)
+	print("===")
 	parent_scene = scene
 
-	if not (has_camera or not self.frozen):
-		return
-		
 	var audio = get_node("../ShrinkSound")
-
-	if (audio != null) and is_inside_tree():
-		audio.play() 
+	if audio != null and has_camera:
+		audio.play()
+		
 
 func on_exit(scene):
 	can_enter = false
+	entry_timer.autostart = true
 	if is_inside_tree():
 		entry_timer.start()
-	else:
-		entry_timer.autostart = true
 	parent_scene = scene
 	
-	if not (has_camera or not self.frozen):
-		return
 	var audio = get_node("../GrowSound")
-	if audio != null:
-		audio.play() 
+	if audio != null and has_camera:
+		audio.play()
 
 # SIGNALS
 
 func _on_entry_timer_timeout():
 	print("Finished entering or exiting")
+	if not has_camera:
+		print("HERE")
 	can_enter = true
 	can_exit = true
 	
