@@ -30,12 +30,14 @@ debug_color = Color(0, 0.980392, 0.0823529, 0.419608)
 script = ExtResource("1_ew0gi")
 
 [node name="TileMap" type="TileMap" parent="."]
+modulate = Color(0.53, 0.438133, 0.318, 1)
 position = Vector2(-8, -2)
 tile_set = ExtResource("2_s8nhe")
 format = 2
 layer_0/tile_data = PackedInt32Array(0, 327680, 0, 1, 393216, 0, 65535, 262144, 0)
 
 [node name="Area2D" type="Area2D" parent="."]
+modulate = Color(0.53, 0.438133, 0.318, 1)
 collision_layer = 0
 collision_mask = 4
 script = ExtResource("3_yftgu")
