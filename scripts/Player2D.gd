@@ -23,7 +23,6 @@ var dying = false
 
 func _ready():
 	get_parent().inside = true
-var can_enter_or_exit: bool = true
 var spring = null
 
 func _physics_process(delta):

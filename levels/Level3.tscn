@@ -1,14 +1,13 @@
-[gd_scene load_steps=13 format=3]
+[gd_scene load_steps=12 format=3 uid="uid://bi8pvbjd6hdg8"]
 
 [ext_resource type="Script" path="res://scripts/Enterable.gd" id="1_34pcf"]
-[ext_resource type="PackedScene" path="res://scenes/inner_level.tscn" id="2_rhe8p"]
-[ext_resource type="PackedScene" path="res://scenes/Player2D.tscn" id="3_oxr81"]
-[ext_resource type="TileSet" path="res://scenes/tilesetBW.tres" id="4_byahx"]
-[ext_resource type="PackedScene" path="res://scenes/enter_boundary.tscn" id="5_48jly"]
-[ext_resource type="PackedScene" path="res://scenes/exit_boundary.tscn" id="6_k1r8j"]
-[ext_resource type="PackedScene" path="res://scenes/FallingPlatform2D_3.tscn" id="7_pyidj"]
+[ext_resource type="PackedScene" uid="uid://b2l15s6pcy3q7" path="res://scenes/inner_level.tscn" id="2_rhe8p"]
+[ext_resource type="PackedScene" uid="uid://cttlirq504m1f" path="res://scenes/Player2D.tscn" id="3_oxr81"]
+[ext_resource type="TileSet" uid="uid://cm0nh06kmdhu4" path="res://scenes/tilesetBW.tres" id="4_byahx"]
+[ext_resource type="PackedScene" uid="uid://c252hehmkbeyi" path="res://scenes/enter_boundary.tscn" id="5_48jly"]
+[ext_resource type="PackedScene" uid="uid://bjb2xix6qbngg" path="res://scenes/FallingPlatform2D_3.tscn" id="7_pyidj"]
 [ext_resource type="PackedScene" path="res://scenes/killzone.tscn" id="8_rgrgt"]
-[ext_resource type="PackedScene" path="res://scenes/level_complete_zone.tscn" id="9_2ftxj"]
+[ext_resource type="PackedScene" uid="uid://c3kssdpdyt7hw" path="res://scenes/level_complete_zone.tscn" id="9_2ftxj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_63eq4"]
 size = Vector2(64, 3)
@@ -39,11 +38,6 @@ layer_0/tile_data = PackedInt32Array(262127, 65536, 0, 327663, 65536, 0, 393199,
 position = Vector2(56, -8)
 rect_x = 24
 rect_y = 10
-
-[node name="exit_boundary" parent="." instance=ExtResource("6_k1r8j")]
-visible = false
-origin = Vector2(-288, -96)
-extents = Vector2(288, 96)
 
 [node name="FallingPlatform" parent="." instance=ExtResource("7_pyidj")]
 position = Vector2(56, -35)

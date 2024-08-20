@@ -3,7 +3,7 @@ extends Node
 @export_dir var level_dir_name = "res://levels"
 
 
-var levels = ["res://levels/Level0.tscn","res://levels/Level1.tscn","res://levels/Level2.tscn","res://levels/Level3.tscn","res://levels/Level9.tscn"]
+var levels = ["res://levels/Level0.tscn","res://levels/Level1.tscn","res://levels/Level2.tscn","res://levels/Level3.tscn","res://levels/Level4.tscn", "res://levels/Level9.tscn"]
 
 var current_level = "res://levels/Level0.tscn"
 

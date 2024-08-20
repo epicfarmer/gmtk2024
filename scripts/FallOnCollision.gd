@@ -11,5 +11,7 @@ func unfreeze_parent():
 		audio.play()
 	parent.get_node("EnteringBody").unfreeze_body()
 
-func _on_body_entered(_body):
-	call_deferred("unfreeze_parent")
+func _on_body_entered(body):
+	var entering_body = body.get_node("EnteringBody")
+	if entering_body.can_enter and entering_body.can_exit:
+		call_deferred("unfreeze_parent")

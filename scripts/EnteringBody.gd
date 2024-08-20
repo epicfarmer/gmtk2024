@@ -83,7 +83,7 @@ func on_exit(scene):
 	parent_scene = scene
 	
 	var audio = get_node("../GrowSound")
-	if audio != null and has_camera:
+	if audio != null and has_camera and is_inside_tree():
 		audio.play()
 
 # SIGNALS
@@ -95,8 +95,7 @@ func _on_entry_timer_timeout():
 	can_enter = true
 	can_exit = true
 	
-
 func get_parent_view():
 	if not has_camera:
 		return null
-	return body.get_node("Camera/ParentView")
+	return body.get_node("Camera/Parent View")

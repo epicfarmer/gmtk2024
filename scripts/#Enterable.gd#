@@ -99,22 +99,20 @@ func exit(body: CollisionObject2D) -> void:
 	if _get_entering_body(body).has_camera:
 		disable_boundary()
 		_set_current_level(_get_current_level(), outer_scene)
-	var inner_global_end = inner_parent.to_global(local_end)
-	body.global_position = outer_scene.to_global(outer_scene.to_local(inner_global_end))
 	_change_parent(body, outer_scene)
 	if _get_entering_body(body).has_camera:
 		inner_parent.add_child(inner_scene)
 		inside = false
 		_get_current_level().enable_boundary()
+	var inner_global_end = inner_parent.to_global(local_end)
+	body.position = outer_scene.to_local(inner_global_end)
 
 func disable_boundary():
 	for child in self.get_children():
 		if child.name.begins_with("exit_boundary"):
 			child.visible = false
 		if child.name.begins_with("enter_boundary"):
-			# This is so that children show up in viewports
-			# child.visible = false
-			pass
+			child.visible = false
 		if child.name.begins_with("killzone"):
 			child.monitoring = false
 
@@ -142,4 +140,3 @@ func _on_body_exited(body):
 		entering_body.on_exit(outer_scene)
 		call_deferred("exit", body)
 		print(body, "is exiting ", self)
-
